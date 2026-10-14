@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OOPS Unit III | Exam Buddy</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a30;--panel2:#18223d;--text:#eef3ff;--muted:#a8b5d4;--line:#2b3858;--accent:#8ba7ff;--accent2:#78e0c3;--warn:#ffd27a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top left,#18274a 0,#0b1020 48%);color:var(--text);font:15px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+header{padding:30px max(20px,calc((100% - 1180px)/2));border-bottom:1px solid var(--line);background:#0b1020cc;position:sticky;top:0;z-index:5;backdrop-filter:blur(16px)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-weight:800;letter-spacing:.04em}.brand span{color:var(--accent2)}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.17em;color:var(--accent2);font-weight:800}.hero{max-width:1180px;margin:auto;padding:32px 20px 22px}.hero h1{font-size:clamp(30px,5vw,52px);line-height:1.05;letter-spacing:-.04em;margin:10px 0}.hero p{color:var(--muted);max-width:760px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.chip{border:1px solid var(--line);border-radius:999px;padding:5px 10px;color:#dce5ff;font-size:12px}
+.layout{max-width:1180px;margin:auto;padding:0 20px 50px;display:grid;grid-template-columns:250px minmax(0,1fr);gap:22px}.side{position:sticky;top:145px;align-self:start;background:var(--panel);border:1px solid var(--line);padding:14px;border-radius:18px}.side button{width:100%;text-align:left;background:transparent;color:var(--muted);border:0;padding:10px;border-radius:10px;cursor:pointer}.side button.active,.side button:hover{background:var(--panel2);color:var(--text)}.side small{display:block;color:var(--muted);padding:8px 10px 3px}.main{min-width:0}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.search{flex:1;min-width:180px}.search input{width:100%}input,select,textarea{background:#0c1428;border:1px solid var(--line);color:var(--text);padding:11px 12px;border-radius:11px;font:inherit}button{font:inherit}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:11px;padding:10px 14px;cursor:pointer}.btn.primary{background:var(--accent);color:#10172d;border-color:transparent;font-weight:800}.btn:hover{filter:brightness(1.1)}.section{display:none}.section.active{display:block}.card{background:linear-gradient(145deg,#121a30,#10172a);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;box-shadow:0 12px 30px #00000012}.card h2{margin:0 0 10px;font-size:23px;letter-spacing:-.02em}.card h3{margin:18px 0 8px;font-size:17px}.muted{color:var(--muted)}.note{border-left:3px solid var(--accent2);padding:10px 13px;background:#78e0c30d;border-radius:0 10px 10px 0;margin:12px 0}.source{font-size:11px;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em;font-weight:800}.tag{display:inline-block;font-size:11px;border:1px solid var(--line);padding:2px 8px;border-radius:999px;color:var(--muted);margin:2px}pre{white-space:pre-wrap;overflow:auto;background:#080d19;border:1px solid #28334e;border-radius:12px;padding:14px;color:#d7e3ff;font-size:13px}code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#a8f0d9}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.stat{background:var(--panel2);padding:14px;border-radius:13px}.stat b{font-size:24px;display:block}.progress{height:7px;background:#26314b;border-radius:99px;overflow:hidden;margin-top:8px}.progress div{height:100%;width:0;background:var(--accent2);transition:width .2s}.flash{min-height:180px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:pointer}.flash .answer{display:none;color:var(--accent2);font-size:19px;font-weight:700}.flash.revealed .answer{display:block}.flash.revealed .question{display:none}.options{display:grid;gap:9px;margin:14px 0}.option{border:1px solid var(--line);border-radius:11px;padding:11px;text-align:left;background:#0c1428;color:var(--text);cursor:pointer}.option.correct{border-color:#78e0c3;background:#78e0c318}.option.wrong{border-color:#ff8f9b;background:#ff8f9b18}.feedback{color:var(--muted);min-height:24px}.qa{border-top:1px solid var(--line);padding:13px 0}.qa summary{cursor:pointer;font-weight:700}.qa p{color:#d0daf0}.checklist label{display:flex;gap:10px;align-items:flex-start;padding:7px 0;color:#d5def5}.checklist input{margin-top:5px;accent-color:var(--accent2)}footer{max-width:1180px;margin:auto;padding:0 20px 35px;color:var(--muted);font-size:12px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.side{position:static;display:flex;gap:4px;overflow:auto}.side small{display:none}.side button{white-space:nowrap;width:auto}.grid2{grid-template-columns:1fr}.statrow{grid-template-columns:repeat(3,1fr)}header{position:static}}
+</style>
+</head>
+<body>
+<header><div class="top"><div class="brand">EXAM<span>·</span>BUDDY <span style="color:var(--muted);font-weight:500">/ OOPS</span></div><div class="muted">Unit III · Java Inheritance</div></div></header>
+<section class="hero"><div class="eyebrow">Your focused revision workspace</div><h1>Understand it.<br><span style="color:var(--accent)">Remember it.</span> Write it.</h1><p>OOPS Unit III Exam Buddy, built around the uploaded 22-page Unit-III notes. Learn the concepts, trace the code, practise questions, and track your revision in one place.</p><div class="chips"><span class="chip">Inheritance</span><span class="chip">Constructors</span><span class="chip">this & super</span><span class="chip">Quiz + Flashcards</span><span class="chip">Exam answers</span></div><div class="statrow"><div class="stat"><b id="mastered">0</b><span class="muted">Flashcards reviewed</span></div><div class="stat"><b id="score">0/0</b><span class="muted">Quiz score</span></div><div class="stat"><b id="checks">0%</b><span class="muted">Revision checklist</span></div></div><div class="progress"><div id="overall"></div></div></section>
+<div class="layout">
+<nav class="side">
+<small>LEARN</small><button class="active" data-tab="overview">✦ Overview</button><button data-tab="inheritance">01 · Inheritance</button><button data-tab="constructors">02 · Constructors</button><button data-tab="thissuper">03 · this & super</button>
+<small>PRACTISE</small><button data-tab="exam">04 · Exam answers</button><button data-tab="quiz">05 · Quick quiz</button><button data-tab="flashcards">06 · Flashcards</button><button data-tab="revision">07 · Revision tracker</button>
+</nav>
+<main class="main">
+<div class="toolbar"><div class="search"><input id="search" placeholder="Search topics, keywords, examples…"></div><button class="btn" id="resetSearch">Clear</button><button class="btn" onclick="window.print()">Print notes</button></div>
+<section class="section active" id="overview">
+<div class="card"><div class="source">Start here · PDF-based map</div><h2>Unit III at a glance</h2><p class="muted">The uploaded notes introduce inheritance, its terminology and types, constructor order and chaining, initialization blocks, and uses of <code>this</code> and <code>super</code>.</p><div class="grid2"><div class="stat"><b>01</b>Inheritance and <code>extends</code><p class="muted">IS-A relationship, superclass/subclass, reuse.</p></div><div class="stat"><b>02</b>Types of inheritance<p class="muted">Single, multilevel, hierarchical, hybrid and multiple.</p></div><div class="stat"><b>03</b>Constructor chaining<p class="muted"><code>this()</code>, <code>super()</code>, initialization blocks.</p></div><div class="stat"><b>04</b>Reference keywords<p class="muted">Access current object or immediate parent members.</p></div></div><div class="note"><b>How to study:</b> Read a concept → run through the code/output → practise a 2/4/6-mark answer → test yourself.</div></div>
+<div class="card"><h2>High-value differences to remember</h2><div class="qa"><b><code>this</code> vs <code>super</code></b><p><code>this</code> refers to the current object/current class context; <code>super</code> accesses the immediate parent class's members or constructor.</p></div><div class="qa"><b><code>this()</code> vs <code>super()</code></b><p><code>this()</code> calls another constructor in the same class; <code>super()</code> calls a superclass constructor. Both must be the first statement when used in a constructor.</p></div><div class="qa"><b>Inheritance reminder</b><p>Java classes cannot directly extend two classes. Multiple inheritance of type can be achieved by implementing multiple interfaces.</p></div></div>
+</section>
+<section class="section" id="inheritance">
+<div class="card"><div class="source">PDF topics · pages 2–10</div><h2>Inheritance in Java</h2><p>Inheritance is a mechanism in which one object/class acquires properties and behaviours of a parent class. It supports code reuse and organization. It represents an <b>IS-A relationship</b>.</p><h3>Key terminology</h3><ul><li><b>Superclass / parent / base class:</b> class whose features are inherited.</li><li><b>Subclass / child / derived class:</b> class that inherits from another class.</li><li><b>Reusability:</b> reusing existing fields and methods instead of rewriting them.</li></ul><h3><code>extends</code> syntax</h3><pre>class SubclassName extends SuperclassName {
+    // fields and methods
+}</pre><h3>Example: Employee → Programmer</h3><pre>class Employee {
+    float salary = 40000;
+}
+class Programmer extends Employee {
+    int bonus = 10000;
+}
+public class Main {
+    public static void main(String[] args) {
+        Programmer p = new Programmer();
+        System.out.println("Programmer salary is:" + p.salary);
+        System.out.println("Bonus of Programmer is:" + p.bonus);
+    }
+}</pre><p><b>Output</b></p><pre>Programmer salary is:40000.0
+Bonus of Programmer is:10000</pre><div class="note">A <code>Programmer</code> is an <code>Employee</code>; the child object can access the inherited <code>salary</code> field and its own <code>bonus</code> field.</div></div>
+<div class="card"><h2>Types of inheritance</h2><h3>1. Single inheritance</h3><p>One child inherits from one parent.</p><pre>class Animal {
+    void eat() { System.out.println("eating..."); }
+}
+class Dog extends Animal {
+    void bark() { System.out.println("barking..."); }
+}
+public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.bark();
+        d.eat();
+    }
+}</pre><pre>barking...
+eating...</pre><h3>2. Multilevel inheritance</h3><p>Inheritance forms a chain: <code>Animal → Dog → BabyDog</code>.</p><pre>class Animal {
+    void eat() { System.out.println("eating..."); }
+}
+class Dog extends Animal {
+    void bark() { System.out.println("barking..."); }
+}
+class BabyDog extends Dog {
+    void weep() { System.out.println("weeping..."); }
+}
+public class Main {
+    public static void main(String[] args) {
+        BabyDog d = new BabyDog();
+        d.weep(); d.bark(); d.eat();
+    }
+}</pre><pre>weeping...
+barking...
+eating...</pre><h3>3. Hierarchical inheritance</h3><p>Two or more child classes inherit from the same parent, e.g. <code>Dog</code> and <code>Cat</code> extend <code>Animal</code>.</p><pre>class Animal { void eat(){ System.out.println("eating..."); } }
+class Dog extends Animal { void bark(){ System.out.println("barking..."); } }
+class Cat extends Animal { void meow(){ System.out.println("meowing..."); } }
+public class Main {
+    public static void main(String[] args) {
+        Cat c = new Cat();
+        c.meow(); c.eat();
+    }
+}</pre><pre>meowing...
+eating...</pre><h3>4. Multiple inheritance</h3><p>A class inheriting from multiple parent classes. The notes explain Java does not support this directly through classes because conflicting inherited methods can cause ambiguity (diamond problem). Java supports implementing multiple interfaces.</p><pre>// Conceptual illustration of the conflict — invalid Java syntax:
+class Main extends A, B { }</pre><h3>5. Hybrid inheritance</h3><p>A combination of two or more inheritance types. The notes list combinations such as multilevel + hierarchical. In Java, combinations requiring multiple class inheritance use interfaces instead.</p><pre>// Simplified pattern shown in the notes:
+class C { public void disp(){ System.out.println("C"); } }
+class A extends C { public void disp(){ System.out.println("A"); } }
+class B extends C { public void disp(){ System.out.println("B"); } }
+class D extends A {
+    public void disp(){ System.out.println("D"); }
+    public static void main(String[] args) {
+        D obj = new D();
+        obj.disp();
+    }
+}
+// Output: D</pre><div class="note"><b>PDF diagram reminder:</b> the inheritance diagrams on pages 5–7 show a chain for multilevel, sibling subclasses for hierarchical, and a combined family-style structure for hybrid inheritance.</div></div>
+<div class="card"><h2>Why is multiple inheritance not supported through classes?</h2><p>The notes use the <b>diamond problem</b>: if two parent classes provide a same-named method, a child may face ambiguity about which implementation to use. Java rejects extending two classes at compile time.</p><p><b>How to achieve it?</b> Implement multiple interfaces.</p><div class="note">Exam phrasing: “Java does not support multiple inheritance using classes to avoid ambiguity and complexity; it supports multiple inheritance through interfaces.”</div></div>
+</section>
+<section class="section" id="constructors">
+<div class="card"><div class="source">PDF topics · pages 10–19</div><h2>Constructors in inheritance</h2><p>When an object of a child class is created, the parent constructor runs before the child constructor. If no explicit parent constructor call is written, Java inserts a no-argument <code>super()</code> call when possible.</p><pre>class Parent {
+    Parent() { System.out.println("Parent class constructor called"); }
+}
+class Child extends Parent {
+    Child() { System.out.println("Child class constructor called"); }
+}
+public class Main {
+    public static void main(String[] args) { Child obj = new Child(); }
+}</pre><pre>Parent class constructor called
+Child class constructor called</pre><h3>Parameterized constructor example</h3><pre>class Parent {
+    int a;
+    Parent() { a = 10; }
+}
+class Child extends Parent {
+    int b;
+    Child(int x) { b = x; }
+    void display() {
+        System.out.println("a = " + a);
+        System.out.println("b = " + b);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Child obj = new Child(20);
+        obj.display();
+    }
+}</pre><pre>a = 10
+b = 20</pre></div>
+<div class="card"><h2>Constructor chaining</h2><p>Constructor chaining calls one constructor from another. The notes cover chaining within the same class using <code>this()</code>, and parent-class chaining using <code>super()</code>.</p><h3>Same class using <code>this()</code></h3><pre>class Temp {
+    Temp() {
+        this(5);
+        System.out.println("The Default constructor");
+    }
+    Temp(int x) {
+        this(5, 15);
+        System.out.println(x);
+    }
+    Temp(int x, int y) {
+        System.out.println(x * y);
+    }
+    public static void main(String[] args) { new Temp(); }
+}</pre><pre>75
+5
+The Default constructor</pre><h3>Rules to remember</h3><ul><li><code>this()</code> must be the first statement in its constructor.</li><li><code>super()</code> must be the first statement in a child constructor.</li><li>Use <code>this()</code> for another constructor in the same class.</li><li>Use <code>super()</code> to call a parent constructor.</li><li>Constructor chaining helps reduce duplicated initialization code.</li></ul><h3>Chaining with <code>super(name)</code></h3><pre>class Base {
+    Base(String name) {
+        System.out.println("Calling parameterized constructor of base");
+    }
+}
+class Derived extends Base {
+    Derived(String name) {
+        super(name);
+        System.out.println("Calling parameterized constructor of derived");
+    }
+}</pre><pre>Calling parameterized constructor of base
+Calling parameterized constructor of derived</pre><h3>Initialization block</h3><p>An instance initialization block runs before the constructor whenever an object is created. If multiple blocks exist, they run in source order.</p><pre>class Temp {
+    { System.out.println("init block"); }
+    Temp() { System.out.println("default"); }
+    Temp(int x) { System.out.println(x); }
+    public static void main(String[] args) {
+        new Temp();
+        new Temp(10);
+    }
+}</pre><pre>init block
+default
+init block
+10</pre><div class="note">Accuracy note: the uploaded notes' line saying constructor chaining can be achieved “in any order” is best read as meaning the constructors may be declared in any source order; a <code>this()</code> or <code>super()</code> call still has to be first in its constructor.</div></div>
+</section>
+<section class="section" id="thissuper">
+<div class="card"><div class="source">PDF topics · pages 19–22</div><h2>The <code>super</code> keyword</h2><p><code>super</code> is used to refer to the immediate parent class context.</p><h3>1. Access parent variable</h3><pre>class Parent { String name = "Parent Class"; }
+class Child extends Parent {
+    String name = "Child Class";
+    void display() {
+        System.out.println(name);
+        System.out.println(super.name);
+    }
+}</pre><pre>Child Class
+Parent Class</pre><h3>2. Access parent method</h3><pre>class Parent {
+    void message() { System.out.println("Hello from Parent"); }
+}
+class Child extends Parent {
+    @Override
+    void message() { System.out.println("Hello from Child"); }
+    void test() {
+        message();
+        super.message();
+    }
+}</pre><p><b>Expected output from <code>test()</code></b></p><pre>Hello from Child
+Hello from Parent</pre><h3>3. Call parent constructor</h3><p>Use <code>super(arguments)</code> to call the parent constructor. It must be the first statement in the child constructor. If the parent has only a parameterized constructor, the child must pass suitable arguments.</p></div>
+<div class="card"><h2>The <code>this</code> keyword</h2><p><code>this</code> refers to the current object. The notes highlight these uses:</p><h3>1. Distinguish instance variable and parameter</h3><pre>class Student {
+    private String name;
+    public Student(String name) {
+        this.name = name;
+    }
+}</pre><p><code>this.name</code> is the instance field; <code>name</code> is the constructor parameter.</p><h3>2. Invoke current-class method</h3><pre>class Calculator {
+    public void printTotal() {
+        System.out.println("Processing calculation...");
+    }
+    public void compute() {
+        this.printTotal();
+    }
+}</pre><h3>3. Chain constructors with <code>this()</code></h3><pre>class Account {
+    private String accountType;
+    private double balance;
+    public Account() {
+        this("Savings", 0.0);
+    }
+    public Account(String accountType, double balance) {
+        this.accountType = accountType;
+        this.balance = balance;
+    }
+}</pre><div class="note">The PDF lists constructor chaining benefits as reduced duplication and improved readability; it also notes that exposing many constructor paths can sometimes be a drawback in larger designs.</div></div>
+<div class="card"><h2>Quick comparison table</h2><table style="width:100%;border-collapse:collapse"><tr><th style="text-align:left;padding:9px;border-bottom:1px solid var(--line)">Keyword</th><th style="text-align:left;padding:9px;border-bottom:1px solid var(--line)">Meaning / use</th></tr><tr><td style="padding:9px;border-bottom:1px solid var(--line)"><code>this</code></td><td style="padding:9px;border-bottom:1px solid var(--line)">Current object; current instance field/method.</td></tr><tr><td style="padding:9px;border-bottom:1px solid var(--line)"><code>super</code></td><td style="padding:9px;border-bottom:1px solid var(--line)">Immediate parent member or constructor.</td></tr><tr><td style="padding:9px;border-bottom:1px solid var(--line)"><code>this()</code></td><td style="padding:9px;border-bottom:1px solid var(--line)">Calls another constructor in the same class.</td></tr><tr><td style="padding:9px"><code>super()</code></td><td style="padding:9px">Calls a superclass constructor.</td></tr></table></div>
+</section>
+<section class="section" id="exam">
+<div class="card"><div class="source">Exam practice · answers organized from PDF topics</div><h2>2-mark answers</h2>
+<details class="qa"><summary>Define inheritance.</summary><p>Inheritance is an OOP mechanism in which a class acquires fields and methods from another class. It supports code reusability and represents an IS-A relationship.</p></details>
+<details class="qa"><summary>What are superclass and subclass?</summary><p>A superclass is the parent/base class whose features are inherited. A subclass is the child/derived class that inherits features from the superclass.</p></details>
+<details class="qa"><summary>What is constructor chaining?</summary><p>Constructor chaining is calling one constructor from another. <code>this()</code> calls a constructor in the same class and <code>super()</code> calls a parent-class constructor.</p></details>
+<details class="qa"><summary>State two uses of super.</summary><p>It accesses parent-class variables or methods and invokes a parent-class constructor.</p></details>
+<h2 style="margin-top:24px">4-mark answers</h2>
+<details class="qa"><summary>Explain any four types of inheritance.</summary><p><b>Single:</b> one subclass inherits one superclass. <b>Multilevel:</b> inheritance forms a chain. <b>Hierarchical:</b> multiple subclasses inherit one superclass. <b>Hybrid:</b> combination of inheritance types; combinations requiring multiple class inheritance can use interfaces in Java.</p></details>
+<details class="qa"><summary>Why does Java not support multiple inheritance through classes?</summary><p>It can create ambiguity when two parent classes contain the same method or field (diamond problem). Java rejects extending multiple classes at compile time. Multiple interfaces can be implemented instead.</p></details>
+<details class="qa"><summary>Differentiate this and super.</summary><p><code>this</code> refers to the current object and is used for current fields, methods and same-class constructor chaining. <code>super</code> accesses the immediate parent class's fields/methods and calls its constructor.</p></details>
+<h2 style="margin-top:24px">6-mark answer framework</h2>
+<details class="qa"><summary>Explain inheritance in Java with types and example.</summary><p>Start with the definition and IS-A relationship. Define superclass, subclass and reusability. Write the <code>extends</code> syntax. Explain single, multilevel, hierarchical, multiple and hybrid inheritance, noting that Java classes do not directly support multiple inheritance. Add the Employee–Programmer example and its output from the notes.</p></details>
+<details class="qa"><summary>Explain constructor chaining with examples.</summary><p>Define constructor chaining. Explain <code>this()</code> for same-class constructors and <code>super()</code> for parent constructors. Mention both must be the first statement in the constructor. Add output order: parent constructor before child constructor. Explain that an instance initialization block runs before each constructor invocation for a newly created object.</p></details>
+<div class="note">These are study-ready answer frameworks derived from the uploaded PDF topics, not a claim about your college's exact marking scheme.</div></div>
+</section>
+<section class="section" id="quiz"><div class="card"><div class="source">Active recall</div><h2>Quick quiz</h2><p class="muted">Choose one answer. Your score updates as you go.</p><div id="quizBox"></div><div class="top"><span class="feedback" id="quizFeedback"></span><button class="btn primary" id="nextQ">Next question →</button></div></div></section>
+<section class="section" id="flashcards"><div class="card"><div class="source">Spaced repetition starter</div><h2>Flashcards</h2><p class="muted">Tap the card to reveal the answer, then move to the next card.</p><div class="card flash" id="flash" role="button" tabindex="0"><div class="question" id="flashQ"></div><div class="answer" id="flashA"></div><p class="muted" style="font-size:12px">Tap to flip</p></div><div class="top"><button class="btn" id="prevFlash">← Previous</button><span id="flashCount" class="muted"></span><button class="btn primary" id="nextFlash">Next →</button></div></div></section>
+<section class="section" id="revision"><div class="card"><div class="source">Own your revision</div><h2>Unit III checklist</h2><p class="muted">Tick a topic when you can explain it without looking.</p><div class="checklist" id="checklist"></div><div class="note">Your checklist is saved only while this page is open; download/keep the file and revisit as needed.</div><button class="btn" id="clearChecks">Reset checklist</button></div></section>
+</main></div>
+<footer>Made from the uploaded “UNIT-3 (OOPS NOTES).pdf” · 22 pages. Source content is preserved in scope; concise explanations and practice-answer frameworks are labeled as study aids. Where wording in the notes could mislead, a clarification is explicitly marked.</footer>
+<script>
+const tabs=[...document.querySelectorAll('[data-tab]')];function showTab(id){document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===id));tabs.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));window.scrollTo({top:0,behavior:'smooth'})}tabs.forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+document.getElementById('search').addEventListener('input',e=>{let q=e.target.value.toLowerCase().trim();document.querySelectorAll('.card,.qa').forEach(el=>{el.style.outline='';if(q&&el.textContent.toLowerCase().includes(q)){el.style.outline='1px solid #8ba7ff'}});});document.getElementById('resetSearch').onclick=()=>{document.getElementById('search').value='';document.querySelectorAll('.card,.qa').forEach(el=>el.style.outline='')};
+const qs=[
+{q:"Which keyword creates a subclass from a class?",o:["implements","extends","super","this"],a:1,e:"The PDF uses `extends` to derive a subclass from a superclass."},
+{q:"Which relationship does inheritance represent?",o:["HAS-A","USES-A","IS-A","PART-OF only"],a:2,e:"Inheritance represents an IS-A or parent-child relationship."},
+{q:"Which inheritance type forms a chain?",o:["Single","Hierarchical","Multilevel","Multiple"],a:2,e:"Example from the notes: Animal → Dog → BabyDog."},
+{q:"Which call invokes another constructor in the same class?",o:["super()","this()","extends()","parent()"],a:1,e:"`this()` chains constructors in the same class."},
+{q:"What is the required position of this() or super() in a constructor?",o:["Last statement","Any position","First statement","Outside constructor"],a:2,e:"The constructor call must be the first statement."},
+{q:"What does super.name access if Child hides Parent's name?",o:["Child's field","Parent's field","A static field only","It is invalid"],a:1,e:"`super.name` refers to the immediate parent field."},
+{q:"Does Java allow a class to extend two classes directly?",o:["Yes","No","Only if abstract","Only with final classes"],a:1,e:"Java doesn't support multiple inheritance through classes."},
+{q:"When does an instance initialization block run?",o:["Only once per class","Before constructor for each object creation","After main only","Only if called by name"],a:1,e:"The PDF example shows the block before each constructor's output."},
+{q:"Which constructor runs first when creating a child object?",o:["Child constructor","Parent constructor","Random order","Neither"],a:1,e:"Parent constructor executes before child constructor."},
+{q:"What is a subclass also called?",o:["Base class","Superclass","Derived class","Package"],a:2,e:"Subclass is also called child, derived or extended class."}
+];let qi=0,score=0,answered=0;function renderQ(){let x=qs[qi];document.getElementById('quizFeedback').textContent='';document.getElementById('quizBox').innerHTML=`<h3>${qi+1}. ${x.q}</h3><div class="options">${x.o.map((o,i)=>`<button class="option" data-i="${i}">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div>`;document.querySelectorAll('.option').forEach(b=>b.onclick=()=>{if(b.disabled)return;document.querySelectorAll('.option').forEach(v=>v.disabled=true);let chosen=+b.dataset.i;if(chosen===x.a){b.classList.add('correct');score++;document.getElementById('quizFeedback').textContent='Correct! '+x.e}else{b.classList.add('wrong');document.querySelectorAll('.option')[x.a].classList.add('correct');document.getElementById('quizFeedback').textContent='Not quite. '+x.e}answered++;document.getElementById('score').textContent=score+'/'+answered;});}renderQ();document.getElementById('nextQ').onclick=()=>{qi=(qi+1)%qs.length;if(qi===0){score=0;answered=0;document.getElementById('score').textContent='0/0'}renderQ()};
+const fc=[["Define inheritance.","A class acquires fields and methods from another class; it supports reuse and an IS-A relationship."],["Superclass vs subclass?","Superclass = parent/base class. Subclass = child/derived class."],["Single inheritance?","One subclass inherits from one superclass."],["Multilevel inheritance?","A chain of inheritance, such as Animal → Dog → BabyDog."],["Hierarchical inheritance?","Multiple child classes inherit from the same parent."],["Why avoid multiple class inheritance in Java?","It can create ambiguity, known as the diamond problem."],["this keyword?","Reference to the current object; accesses current fields/methods."],["super keyword?","Accesses immediate parent members or constructor."],["this() vs super()?","this() calls a same-class constructor; super() calls a parent constructor."],["Constructor chaining benefit?","Reduces duplicate initialization code and improves readability."],["When does parent constructor run?","Before the child constructor."],["Instance initialization block?","An instance block runs before the constructor for each object creation."]];let fi=0,mastered=0;function renderF(){document.getElementById('flash').classList.remove('revealed');document.getElementById('flashQ').textContent=fc[fi][0];document.getElementById('flashA').textContent=fc[fi][1];document.getElementById('flashCount').textContent=(fi+1)+' / '+fc.length}document.getElementById('flash').onclick=()=>{let el=document.getElementById('flash');let was=el.classList.contains('revealed');el.classList.toggle('revealed');if(!was){mastered++;document.getElementById('mastered').textContent=mastered}};document.getElementById('flash').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();document.getElementById('flash').click()}};document.getElementById('nextFlash').onclick=()=>{fi=(fi+1)%fc.length;renderF()};document.getElementById('prevFlash').onclick=()=>{fi=(fi-1+fc.length)%fc.length;renderF()};renderF();
+const topics=["Define inheritance and IS-A relationship","Learn superclass, subclass, reusability and extends syntax","Practise single inheritance code and output","Practise multilevel inheritance code and output","Explain hierarchical, hybrid and multiple inheritance","Explain the diamond problem and interfaces","Parent-child constructor execution order","Constructor chaining using this()","Constructor chaining using super()","Initialization block and output","super for parent variables and methods","this for fields, methods and constructor chaining","Prepare 2-mark definitions","Prepare 4-mark comparisons","Practise a 6-mark inheritance answer"];const list=document.getElementById('checklist');topics.forEach((t,i)=>{let l=document.createElement('label');l.innerHTML=`<input type="checkbox" data-check="${i}"><span>${t}</span>`;list.appendChild(l)});function upd(){let boxes=[...document.querySelectorAll('[data-check]')],n=boxes.filter(b=>b.checked).length,p=Math.round(n/boxes.length*100);document.getElementById('checks').textContent=p+'%';document.getElementById('overall').style.width=p+'%'}document.querySelectorAll('[data-check]').forEach(b=>b.onchange=upd);document.getElementById('clearChecks').onclick=()=>{document.querySelectorAll('[data-check]').forEach(b=>b.checked=false);upd()};upd();
+</script>
+</body></html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DS Chapter 5 — Binary Trees | Exam Buddy</title>
+<style>
+:root{--bg:#0b1020;--panel:#131b2f;--panel2:#18233b;--ink:#eef3ff;--muted:#aab7d0;--line:#2a3958;--accent:#7dd3fc;--good:#86efac;--warn:#fcd34d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172746,var(--bg) 58%);color:var(--ink);font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif}header{padding:30px max(18px,calc((100% - 1180px)/2));border-bottom:1px solid var(--line);background:#0b1020cc}h1{line-height:1.15;margin:8px 0;font-size:clamp(28px,4vw,44px)}h2{margin-top:0}p{color:#d6e0f3}.muted,.small{color:var(--muted)}.tag{display:inline-block;border:1px solid #426080;color:var(--accent);border-radius:999px;padding:3px 10px;font-size:12px;margin:3px}.wrap{max-width:1180px;margin:auto;padding:20px}.tabs{display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:0;z-index:5;padding:10px 0;background:#0b1020ed}.tabs button,.btn{border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:10px;padding:10px 13px;cursor:pointer;font-weight:650}.tabs button.active,.btn.primary{background:var(--accent);color:#092033;border-color:var(--accent)}.page{display:none}.page.active{display:block}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}.card{background:linear-gradient(145deg,var(--panel),#10182a);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}.callout{border-left:4px solid var(--accent);padding:10px 14px;background:#14243a;border-radius:7px}.warn{border-left-color:var(--warn)}.good{border-left-color:var(--good)}code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;overflow:auto;background:#080d18;border:1px solid var(--line);padding:14px;border-radius:10px;color:#d7f4ff}table{width:100%;border-collapse:collapse;margin:12px 0}th,td{padding:10px;text-align:left;border:1px solid var(--line)}th{background:#1b2a44}.tree{font:700 15px ui-monospace,monospace;white-space:pre;line-height:1.55;color:#a5e7ff;background:#080d18;padding:16px;border-radius:10px;overflow:auto}button,input,select{font:inherit}input[type=text]{background:#080d18;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:9px;max-width:100%}.answer{display:none;margin-top:10px}.answer.show{display:block}.flash{min-height:155px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:20px;cursor:pointer}.progress{height:10px;background:#26324a;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:var(--good);width:0}.q{padding:12px 0;border-bottom:1px solid var(--line)}label{display:block;margin:6px 0;color:#d9e5f8}footer{padding:30px 0;color:var(--muted);font-size:13px}a{color:var(--accent)}@media(max-width:600px){.wrap{padding:12px}.tabs{position:static}.tabs button{font-size:13px;padding:8px}}
+</style></head>
+<body>
+<header><div class="tag">DATA STRUCTURES USING C</div><div class="tag">CHAPTER 5</div><h1>Binary Trees — Exam Buddy</h1><p>Seekho in simple Hinglish • revise fast • practise actively • exam answers ready</p><div class="small">Offline single-file website • Your quiz and revision progress stays in this browser</div></header>
+<div class="wrap"><nav class="tabs" id="tabs"></nav>
+<section id="learn" class="page active">
+<div class="card"><h2>Chapter roadmap</h2><p>Source PDF ke chapter outline ke hisaab se: Trees; Binary Tree; Traversal; Expression Trees; Threaded Binary Tree; Binary Search Tree; General (m-ary) Trees; DFS/BFS; Sparse Matrices.</p><div class="callout">Exam tip: traversal outputs, recursive algorithms, tree terminology, BST operations, array vs pointer representation aur DFS/BFS ko diagram ke saath practise karo.</div></div>
+<div class="card"><h2>5.1 Trees — basic idea</h2><p><b>Tree:</b> nodes ka hierarchical collection. Top node <b>root</b> hota hai. Root ka parent nahi hota. Parent se neeche linked nodes children kehlate hain. Jis node ke children nahi hote, woh leaf node hai. Har child apne subtree ka root bhi hota hai.</p><div class="tree">             A   ← root
+           /   \\
+          B     C
+         / \\     \\
+        D   E     F  ← leaves: D, E, F</div><p>Hinglish: family tree jaisa structure — root se branches nikalti hain. General graph mein cycles ho sakte hain; tree mein cycle nahi hota aur nodes hierarchical relation mein hote hain.</p></div>
+<div class="card"><h2>5.2 Binary Tree</h2><p><b>Definition:</b> Binary tree either empty hota hai, ya ek root node aur uske left subtree aur right subtree se milkar banta hai. Har node ke maximum two children: left and right.</p><div class="tree">             A
+           /   \\
+          B     C
+         / \\   / \\
+        D   E F   G</div><p><b>Terminology:</b> root (A), parent (B is parent of D/E), children (D and E), siblings (B and C), leaf/external node (D/E/F/G), internal node (A/B/C), path (A→B→D), subtree (B with D and E).</p><table><tr><th>Type</th><th>Meaning</th></tr><tr><td>Full / strict binary tree</td><td>Har node ke 0 ya exactly 2 children.</td></tr><tr><td>Complete binary tree</td><td>Last level ke alawa levels filled; last level left se fill hota hai.</td></tr><tr><td>Perfect binary tree</td><td>All internal nodes ke 2 children aur all leaves same level par.</td></tr><tr><td>Skewed tree</td><td>Har internal node ka ek hi child; left- ya right-skewed.</td></tr></table><div class="callout warn">Terminology note: textbooks kabhi “full” aur “complete” ko alag naming conventions se use karte hain. Exam mein apne PDF ki definition aur diagram follow karna.</div></div>
+<div class="card"><h2>5.3 Traversal techniques</h2><p>Traversal means har node ko ek defined order mein visit karna.</p><div class="tree">             A
+           /   \\
+          B     C
+         / \\   / \\
+        D   E F   G</div><table><tr><th>Traversal</th><th>Rule</th><th>Output for above tree</th></tr><tr><td>Preorder</td><td>Root → Left → Right (NLR)</td><td>A B D E C F G</td></tr><tr><td>Inorder</td><td>Left → Root → Right (LNR)</td><td>D B E A F C G</td></tr><tr><td>Postorder</td><td>Left → Right → Root (LRN)</td><td>D E B F G C A</td></tr><tr><td>Level order</td><td>Level by level, usually queue</td><td>A B C D E F G</td></tr></table><h3>Recursive algorithms (exam format)</h3><pre>PREORDER(node)
+  if node != NULL:
+    visit(node)
+    PREORDER(node.left)
+    PREORDER(node.right)
+
+INORDER(node)
+  if node != NULL:
+    INORDER(node.left)
+    visit(node)
+    INORDER(node.right)
+
+POSTORDER(node)
+  if node != NULL:
+    POSTORDER(node.left)
+    POSTORDER(node.right)
+    visit(node)</pre><p>Memory trick: Pre = root pehle; In = root beech mein; Post = root last.</p></div>
+<div class="card"><h2>Building a tree from traversal pairs</h2><p>Common method: unique node values hone par <b>Preorder + Inorder</b> ya <b>Postorder + Inorder</b> se tree reconstruct kar sakte hain.</p><p>Example: Preorder = <code>A B D E C F</code>, Inorder = <code>D B E A F C</code>.</p><ol><li>Preorder ka first element A root hai.</li><li>Inorder mein A ke left mein D B E, right mein F C: left/right subtrees identify karo.</li><li>Har subtree par same rule recursively apply karo.</li></ol><div class="callout warn">Duplicate keys ke case mein traversal pairs se unique tree zaroori nahi milta. Ye uniqueness assumption supplementary explanation hai.</div></div>
+<div class="card"><h2>Array vs pointer representation</h2><table><tr><th>Array (0-based)</th><th>Pointer-based</th></tr><tr><td>Node index i: left child = 2i+1; right child = 2i+2; parent = floor((i−1)/2).</td><td>Node stores data, left pointer, right pointer; missing child pointer = NULL.</td></tr><tr><td>Complete trees ke liye compact.</td><td>Irregular trees mein flexible; insertion/deletion mein pointers update.</td></tr><tr><td>Sparse/skewed tree mein array slots waste ho sakte hain.</td><td>Har node ke NULL pointers ke liye space lag sakta hai.</td></tr></table><p>Example: root index 0, left child index 1, right child index 2.</p></div>
+<div class="card"><h2>5.4 Expression trees</h2><p>Expression tree mein operands leaves par aur operators internal nodes par hote hain. Traversals expression notations produce karte hain.</p><div class="tree">        *
+       / \\
+      +   -
+     / \\ / \\
+    A  B C  D</div><table><tr><th>Traversal</th><th>Expression</th></tr><tr><td>Preorder</td><td>* + A B - C D (prefix)</td></tr><tr><td>Inorder</td><td>(A+B)*(C-D) (parentheses added)</td></tr><tr><td>Postorder</td><td>A B + C D - * (postfix)</td></tr></table><p>Expression tree build karte waqt operator precedence aur parentheses ko source expression ke according preserve karo.</p></div>
+<div class="card"><h2>5.5 Threaded binary tree</h2><p>Ordinary binary tree mein missing left/right child pointers NULL hote hain. Threaded binary tree mein aise NULL pointers ko traversal order ke predecessor/successor node ki taraf thread ke roop mein use kiya ja sakta hai, taaki traversal mein stack/recursion ki need kam ho.</p><div class="callout">Thread type identify karte waqt check karo: left thread predecessor ko point kar sakta hai; right thread successor ko. Thread-vs-child ko distinguish karne ke liye tag/flag use ho sakta hai.</div></div>
+<div class="card"><h2>5.6 Binary Search Tree (BST)</h2><p><b>BST property:</b> har node ke left subtree ke keys node se smaller, aur right subtree ke keys larger hote hain (duplicate handling implementation par depend karta hai).</p><div class="tree">           50
+         /    \\
+        30     70
+       / \\    / \\
+      20  40  60  80</div><ul><li><b>Search:</b> key compare karo; smaller ho to left, larger ho to right.</li><li><b>Insert:</b> same comparisons follow karke NULL position par node add karo.</li><li><b>Delete:</b> leaf → remove; one child → child se replace; two children → inorder successor/predecessor se replace, then that node remove.</li><li><b>Inorder traversal:</b> sorted order deta hai for a BST with unique keys.</li></ul><table><tr><th>Operation</th><th>Typical balanced</th><th>Worst skewed</th></tr><tr><td>Search/Insert/Delete</td><td>O(log n)</td><td>O(n)</td></tr></table><div class="callout warn">Complexity note is supplementary general CS explanation; actual runtime depends on tree shape.</div></div>
+<div class="card"><h2>5.7 General (m-ary) trees</h2><p>General tree mein node ke children ki count fixed two tak limited nahi hoti. M-ary tree mein each node ke maximum m children ho sakte hain. Binary representation ke common idea: <b>left-child/right-sibling</b> — first child ko left pointer, next sibling ko right pointer se represent karte hain.</p><h3>5.8 Search: DFS vs BFS</h3><table><tr><th>DFS</th><th>BFS</th></tr><tr><td>Depth mein jaata hai before backtracking; stack/recursion commonly used.</td><td>Level by level visit; queue commonly used.</td></tr><tr><td>Tree traversal examples: preorder/inorder/postorder variants.</td><td>Level-order traversal is BFS-style on a tree.</td></tr></table></div>
+<div class="card"><h2>5.9 Sparse matrices</h2><p>Sparse matrix mein most entries zero hote hain. Full matrix store karne ke bajay only non-zero values aur unki row/column positions store karne se memory save ho sakti hai. Chapter outline includes this topic; exact representation details should follow the PDF’s corresponding section.</p><div class="callout warn">Source coverage note: the PDF chapter includes sparse matrices, but this overview does not reproduce every representation variant or every worked example from the source.</div></div>
+</section>
+<section id="marks" class="page"><div class="card"><h2>Exam-ready answers: 2, 4 & 6 marks</h2><p class="muted">Answers concise rakhe hain; diagram ya algorithm question mein labelled diagram/steps add karo.</p>
+<h3>2 marks — Define a binary tree.</h3><p>A binary tree is a tree that is either empty or consists of a root node and left and right binary subtrees. Each node has at most two children.</p>
+<h3>2 marks — What is a leaf node?</h3><p>A node with no children is called a leaf node (also called an external node).</p>
+<h3>2 marks — State traversal orders.</h3><p>Preorder: Root-Left-Right; Inorder: Left-Root-Right; Postorder: Left-Right-Root.</p>
+<h3>4 marks — Differentiate array and linked representation.</h3><p>Array representation stores nodes at indices and is convenient for complete trees. With 0-based indexing, children of i are 2i+1 and 2i+2. It may waste space for sparse trees and resizing is inconvenient. Linked representation stores data with left/right pointers; NULL denotes absent subtrees. It supports flexible shapes and pointer-based insertion/deletion, but uses pointer memory and parent lookup is not direct.</p>
+<h3>4 marks — Explain three traversals.</h3><p>Preorder visits root, left subtree, right subtree. Inorder visits left, root, right. Postorder visits left, right, root. For tree A with children B,C and B with D,E, the outputs are respectively A B D E C; D B E A C; D E B C A.</p>
+<h3>6 marks — Explain BST and its operations.</h3><p>A Binary Search Tree is a binary tree in which keys in the left subtree are smaller than the node and keys in the right subtree are larger (for unique keys). Search compares the target with the current node and moves left or right. Insertion follows the same comparisons until a NULL position is found. Deletion has three cases: leaf node removal; one-child node replaced by its child; two-child node replaced by its inorder successor or predecessor. Inorder traversal of a BST gives sorted keys. Average balanced operations are O(log n), while a skewed tree may require O(n).</p>
+<h3>6 marks — Explain tree traversals with example.</h3><p>Traversal means visiting all nodes systematically. Consider A as root, B and C its children, and D/E children of B. Preorder (NLR) = A B D E C; Inorder (LNR) = D B E A C; Postorder (LRN) = D E B C A. Recursive algorithms check NULL, then call left/right subtree traversals in the required order. Draw the tree and write each sequence for full marks.</p>
+</div></section>
+<section id="programs" class="page"><div class="card"><h2>C program: recursive traversals</h2><p>Supplementary, standard C example for a small fixed tree. The traversal logic matches the chapter topic.</p><pre>#include &lt;stdio.h&gt;
+struct Node {
+    char data;
+    struct Node *left, *right;
+};
+void preorder(struct Node *r) {
+    if (r != NULL) {
+        printf("%c ", r->data);
+        preorder(r->left);
+        preorder(r->right);
+    }
+}
+void inorder(struct Node *r) {
+    if (r != NULL) {
+        inorder(r->left);
+        printf("%c ", r->data);
+        inorder(r->right);
+    }
+}
+void postorder(struct Node *r) {
+    if (r != NULL) {
+        postorder(r->left);
+        postorder(r->right);
+        printf("%c ", r->data);
+    }
+}</pre><p class="small">Note: This excerpt demonstrates traversal functions; it omits allocation and main() to keep the algorithm readable.</p></div>
+<div class="card"><h2>C program: BST search (core function)</h2><pre>struct Node {
+    int key;
+    struct Node *left, *right;
+};
+struct Node *search(struct Node *root, int key) {
+    if (root == NULL || root->key == key)
+        return root;
+    if (key &lt; root->key)
+        return search(root->left, key);
+    return search(root->right, key);
+}</pre><p class="small">Supplementary core function. It assumes the BST property and unique keys; the full node creation/insertion program is not reproduced here.</p></div></section>
+<section id="lab" class="page"><div class="card"><h2>Interactive traversal lab</h2><p>Use the sample tree below. Select a traversal and reveal its sequence.</p><div class="tree">             A
+           /   \\
+          B     C
+         / \\   / \\
+        D   E F   G</div><label for="traversal">Traversal</label><select id="traversal"><option value="pre">Preorder</option><option value="in">Inorder</option><option value="post">Postorder</option><option value="level">Level order</option></select><button class="btn primary" onclick="showTraversal()">Show sequence</button><p id="trout" class="callout"></p></div>
+<div class="card"><h2>Array index calculator (0-based)</h2><p>Enter node index i to calculate child and parent indices.</p><input id="idx" type="text" value="2" inputmode="numeric"><button class="btn" onclick="calcIndex()">Calculate</button><p id="idxout" class="callout"></p></div></section>
+<section id="cards" class="page"><div class="card"><h2>Flashcards</h2><p class="muted">Card par click karke answer reveal karo. “Known” mark kar sakte ho.</p><div class="card flash" id="flash" onclick="flipFlash()">What is a root node?</div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="prevFlash()">← Previous</button><button class="btn primary" onclick="flipFlash()">Flip card</button><button class="btn" onclick="markKnown()">✓ Known</button><button class="btn" onclick="nextFlash()">Next →</button></div><p id="flashCount" class="small"></p></div></section>
+<section id="quiz" class="page"><div class="card"><h2>MCQ practice</h2><p id="quizProgress" class="small"></p><div id="quizBox"></div><button class="btn primary" onclick="checkMCQ()">Check answer</button><button class="btn" onclick="nextMCQ()">Next question</button><p id="quizFeedback"></p></div></section>
+<section id="mock" class="page"><div class="card"><h2>10-question mock test</h2><p>Har question ke liye one answer select karo, then submit.</p><form id="mockForm"></form><button class="btn primary" onclick="submitMock()">Submit mock test</button><div id="mockResult" class="callout" style="margin-top:12px"></div></div></section>
+<section id="revision" class="page"><div class="card"><h2>Quick revision checklist</h2><p>Tick each item after revising. Progress is saved locally in this browser.</p><div id="checklist"></div><div class="progress"><span id="progbar"></span></div><p id="progtext" class="small"></p><button class="btn" onclick="resetProgress()">Reset checklist</button></div><div class="card"><h2>Last-minute recap</h2><ul><li>Binary node: maximum two children.</li><li>Preorder = NLR; Inorder = LNR; Postorder = LRN.</li><li>In a BST, inorder traversal returns sorted keys (unique-key convention).</li><li>Array children for 0-based index i: 2i+1 and 2i+2.</li><li>DFS explores depth; BFS explores level by level.</li><li>Expression tree: operators internal, operands leaves.</li></ul></div></section>
+<section id="audit" class="page"><div class="card"><h2>PDF audit & source fidelity</h2><p><b>Source:</b> DS.pdf, Chapter 5 “Binary Trees”. Its contents list sections 5.1–5.9: Trees; Binary Tree; Binary Tree Traversal Techniques (recursive traversal, traversal pairs, array and pointer creation/traversal, non-recursive traversal); Expression Trees; Threaded Binary Tree; Binary Search Tree; General/m-ary Trees; DFS/BFS; Sparse Matrices; Exercises; MCQs.</p><p><b>Covered here:</b> core tree terms, binary-tree types, recursive traversal rules and examples, traversal pair reconstruction concept, array/pointer representation, expression trees, threaded trees, BST operations, general trees, DFS/BFS, and a sparse-matrix overview.</p><div class="callout warn"><b>Audit limitation:</b> This is a structured chapter study site based on the source PDF’s chapter outline and extracted sections. It is not a claim that every page, every diagram, every C program, every exercise, or every MCQ in the 243-page PDF has been visually audited and transcribed. The diagrams here are redraws, not exact copies of PDF figures. Supplementary explanations and sample C snippets are labelled; use the original PDF for any omitted source-specific algorithms or examples.</div><p>Before exam, compare your assigned pages for non-recursive traversal algorithms, exact code listings, threaded-tree variants and sparse matrix representation with the original notes.</p></div></section>
+<footer>Exam Buddy • Chapter 5: Binary Trees • Made as an offline HTML study aid. Save your downloaded file and open it in Safari/Chrome.</footer></div>
+<script>
+const tabInfo=[['learn','Learn'],['marks','2 / 4 / 6 Marks'],['programs','C Programs'],['lab','Interactive Lab'],['cards','Flashcards'],['quiz','MCQs'],['mock','Mock Test'],['revision','Revision'],['audit','PDF Audit']];
+const tabs=document.getElementById('tabs');tabInfo.forEach(([id,label],i)=>{let b=document.createElement('button');b.textContent=label;b.className=i===0?'active':'';b.onclick=()=>{document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');tabs.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})};tabs.appendChild(b)});
+function showTraversal(){let v=document.getElementById('traversal').value;let m={pre:'A B D E C F G',in:'D B E A F C G',post:'D E B F G C A',level:'A B C D E F G'};document.getElementById('trout').textContent=m[v]}
+function calcIndex(){let i=Number(document.getElementById('idx').value);let out=document.getElementById('idxout');if(!Number.isInteger(i)||i<0){out.textContent='Enter a non-negative whole number.';return}out.textContent='Index '+i+': left child = '+(2*i+1)+', right child = '+(2*i+2)+(i===0?' (root has no parent index)':' , parent = '+Math.floor((i-1)/2))}
+const flashcards=[['What is a root node?','The top node of a tree; it has no parent.'],['Define leaf node.','A node with no children.'],['What is a binary tree?','A tree where each node has at most two children.'],['Preorder order?','Root → Left → Right (NLR).'],['Inorder order?','Left → Root → Right (LNR).'],['Postorder order?','Left → Right → Root (LRN).'],['BST property?','Left keys are smaller and right keys are larger than the node, under the unique-key convention.'],['Array left child index?','For 0-based index i: 2i+1.'],['Array right child index?','For 0-based index i: 2i+2.'],['What does BFS use commonly?','A queue to visit level by level.'],['What does DFS use commonly?','A stack or recursion to explore depth-first.'],['Expression tree: where are operators?','Internal nodes; operands are leaves.']];
+let fi=0,flipped=false,known=JSON.parse(localStorage.getItem('ds5known')||'[]');function renderFlash(){document.getElementById('flash').textContent=flipped?flashcards[fi][1]:flashcards[fi][0];document.getElementById('flashCount').textContent=`Card ${fi+1} of ${flashcards.length} • ${known.includes(fi)?'Marked known':'Not marked known'}`}function flipFlash(){flipped=!flipped;renderFlash()}function nextFlash(){fi=(fi+1)%flashcards.length;flipped=false;renderFlash()}function prevFlash(){fi=(fi-1+flashcards.length)%flashcards.length;flipped=false;renderFlash()}function markKnown(){if(!known.includes(fi))known.push(fi);localStorage.setItem('ds5known',JSON.stringify(known));renderFlash()}renderFlash();
+const mcqs=[
+['Which node has no parent?',['Leaf','Root','Sibling','Internal node'],1,'The root is the top node and has no parent.'],
+['A binary-tree node can have at most how many children?',['1','2','3','Unlimited'],1,'A binary tree allows left and right children.'],
+['Which traversal is NLR?',['Inorder','Postorder','Preorder','Level order'],2,'Preorder visits Node, Left, Right.'],
+['Which traversal gives sorted keys in a BST?',['Preorder','Inorder','Postorder','Random order'],1,'BST inorder visits left, node, right.'],
+['For 0-based array index i, left child index is:',['2i','2i+1','2i+2','i/2'],1,'Left child = 2i+1.'],
+['Which structure is commonly used for BFS?',['Stack','Queue','Only recursion','Hash table'],1,'Queue maintains level-order processing.'],
+['Expression tree leaves usually contain:',['Operators','Operands','Pointers only','Levels'],1,'Operators are internal nodes; operands are leaves.'],
+['A node with no children is called:',['Root only','Sibling','Leaf','Parent'],2,'Leaf nodes have no children.'],
+['Which is the postorder rule?',['NLR','LNR','LRN','RNL'],2,'Postorder visits left, right, then node.'],
+['A skewed tree may make BST search take:',['O(1)','O(log n) always','O(n)','O(n log n) always'],2,'A skewed tree can behave like a linked list.']];
+let qi=0,selected=null,score=0,answered={};function renderMCQ(){let q=mcqs[qi];document.getElementById('quizProgress').textContent=`Question ${qi+1} of ${mcqs.length}`;document.getElementById('quizBox').innerHTML='<h3>'+q[0]+'</h3>'+q[1].map((a,i)=>`<label><input type="radio" name="mcq" value="${i}" ${selected===i?'checked':''}> ${String.fromCharCode(65+i)}. ${a}</label>`).join('');document.getElementById('quizFeedback').textContent=answered[qi]||''}function checkMCQ(){let el=document.querySelector('input[name=mcq]:checked');if(!el){document.getElementById('quizFeedback').textContent='Select an option first.';return}selected=Number(el.value);let q=mcqs[qi];let msg=(selected===q[2]?'Correct! ':'Not quite. Correct answer: '+q[1][q[2]]+'. ')+q[3];answered[qi]=msg;renderMCQ()}function nextMCQ(){qi=(qi+1)%mcqs.length;selected=null;renderMCQ()}renderMCQ();
+const mockQ=[mcqs[0],mcqs[1],mcqs[2],mcqs[3],mcqs[4],mcqs[5],mcqs[6],mcqs[7],mcqs[8],mcqs[9]];document.getElementById('mockForm').innerHTML=mockQ.map((q,n)=>`<div class="q"><b>${n+1}. ${q[0]}</b>${q[1].map((a,i)=>`<label><input type="radio" name="m${n}" value="${i}"> ${String.fromCharCode(65+i)}. ${a}</label>`).join('')}</div>`).join('');function submitMock(){let s=0,missing=0;mockQ.forEach((q,n)=>{let a=document.querySelector('input[name=m'+n+']:checked');if(!a)missing++;else if(Number(a.value)===q[2])s++});document.getElementById('mockResult').textContent=`Score: ${s}/10 (${s*10}%). Unanswered: ${missing}. Review the explanations in MCQ practice.`;localStorage.setItem('ds5mock',JSON.stringify({s,missing}))}
+const tasks=['Tree terminology: root, parent, child, sibling, leaf, path, subtree','Binary-tree types: full, complete, perfect, skewed','Preorder, inorder, postorder and level-order outputs','Recursive traversal algorithms','Build tree from traversal pairs','Array representation formulas and pointer representation','Expression tree and prefix/infix/postfix relation','Threaded binary tree concept','BST search, insert, delete and inorder property','General/m-ary tree and left-child/right-sibling idea','DFS vs BFS','Sparse matrix basic idea','Practise 2-, 4- and 6-mark answers'];let checks=JSON.parse(localStorage.getItem('ds5checks')||'{}');function renderChecks(){document.getElementById('checklist').innerHTML=tasks.map((t,i)=>`<label><input type="checkbox" ${checks[i]?'checked':''} onchange="toggleCheck(${i},this.checked)"> ${t}</label>`).join('');let n=Object.values(checks).filter(Boolean).length;document.getElementById('progbar').style.width=(n/tasks.length*100)+'%';document.getElementById('progtext').textContent=`${n} of ${tasks.length} complete (${Math.round(n/tasks.length*100)}%)`}function toggleCheck(i,v){checks[i]=v;localStorage.setItem('ds5checks',JSON.stringify(checks));renderChecks()}function resetProgress(){checks={};localStorage.setItem('ds5checks','{}');renderChecks()}renderChecks();
+</script></body></html>

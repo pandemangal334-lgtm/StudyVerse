@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DS Chapter 2 — Recursion | Exam Buddy</title>
+<style>
+:root{--bg:#0b1020;--panel:#141c30;--panel2:#1a2540;--text:#eef3ff;--muted:#aab7d3;--accent:#79e0c3;--accent2:#9aaeff;--line:#2c3957;--good:#8ce6a4;--bad:#ff9d9d}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#0b1020,#101a2e);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,sans-serif}header{padding:34px 20px 24px;max-width:1200px;margin:auto}header .eyebrow{color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.78rem}h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.08;margin:.35em 0}h2{line-height:1.2}p{color:var(--muted)}.wrap{max-width:1200px;margin:auto;padding:0 20px 40px}.hero{background:linear-gradient(120deg,#1a2946,#18213a);border:1px solid var(--line);padding:22px;border-radius:22px}.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.pill{border:1px solid var(--line);background:#10182a;border-radius:99px;padding:6px 12px;color:var(--muted);font-size:.86rem}.tabs{display:flex;gap:8px;overflow:auto;padding:16px 0;position:sticky;top:0;background:#0b1020ee;backdrop-filter:blur(12px);z-index:5}.tabs button,button{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:12px;padding:10px 14px;cursor:pointer;font:inherit}.tabs button.active,button.primary{background:var(--accent);color:#092019;border-color:var(--accent);font-weight:800}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;margin:12px 0}.card h3{margin-top:0}.tag{color:var(--accent);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em}.callout{border-left:3px solid var(--accent);padding:10px 14px;background:#17253a;border-radius:0 10px 10px 0;color:var(--muted)}code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;background:#080d18;border:1px solid var(--line);padding:14px;border-radius:12px;overflow:auto;color:#dce7ff}.hide{display:none}.question{border-bottom:1px solid var(--line);padding:14px 0}.options{display:grid;gap:7px;margin:10px 0}.options button{text-align:left}.options button.correct{border-color:var(--good);color:var(--good)}.options button.wrong{border-color:var(--bad);color:var(--bad)}.answer{color:var(--muted);font-size:.93rem;margin-top:8px}.flash{min-height:150px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:1.2rem;cursor:pointer;background:#1a2946;border-radius:16px;padding:24px;border:1px solid var(--line)}.progress{height:9px;background:#26324b;border-radius:20px;overflow:hidden}.progress div{height:100%;width:0;background:var(--accent);transition:width .2s}label{display:block;color:var(--muted);margin:6px 0}input{background:#080d18;border:1px solid var(--line);border-radius:8px;padding:9px;color:var(--text);max-width:100px}footer{padding:25px;color:var(--muted);text-align:center;font-size:.88rem}svg{max-width:100%;height:auto}.source{font-size:.88rem;color:#aab7d3}.mark{display:flex;gap:8px;align-items:center}.mark input{max-width:none} @media(max-width:600px){.wrap{padding:0 12px 25px}header{padding:25px 14px}.tabs{margin:0 -4px}.tabs button{white-space:nowrap}}
+</style>
+</head>
+<body>
+<header><div class="eyebrow">Data Structures Using C · Chapter 2</div><h1>Recursion <span style="color:var(--accent)">Exam Buddy</span></h1><p>Learn in simple Hinglish, trace calls step-by-step, practise C programs, and revise for 2, 4 and 6 mark questions.</p>
+<div class="stats"><span class="pill">📘 Source: DS.pdf, Chapter 2</span><span class="pill">🧠 Hinglish teaching</span><span class="pill">💻 C programs</span><span class="pill">🎯 Quiz + mock test</span></div></header>
+<div class="wrap">
+<div class="hero"><b>How to use:</b> Pehle Learn tab padho → code trace karo → flashcards revise karo → quiz/mock test attempt karo. Progress is stored in this browser on this device.
+<div class="stats"><span class="pill">Progress <b id="progressText">0%</b></span><span class="pill">Quiz best <b id="bestText">0</b></span><span class="pill">Flashcards known <b id="knownText">0</b></span></div><div class="progress"><div id="progressBar"></div></div></div>
+<nav class="tabs" id="tabs">
+<button class="active" data-tab="learn">Learn</button><button data-tab="answers">2/4/6 Marks</button><button data-tab="programs">C Programs</button><button data-tab="trace">Interactive Trace</button><button data-tab="flash">Flashcards</button><button data-tab="quiz">Quiz & MCQs</button><button data-tab="mock">Mock Test</button><button data-tab="revision">Revision</button><button data-tab="audit">PDF Audit</button>
+</nav>
+<section id="learn" class="pane">
+<div class="grid">
+<article class="card"><div class="tag">2.1 · Source topic</div><h2>Recursion kya hai?</h2><p>Recursion ek technique hai jisme function apne aap ko call karta hai, usually smaller input ke saath, jab tak base/stopping condition meet na ho.</p><div class="callout">Simple example: countdown(3) → countdown(2) → countdown(1) → stop. Base case nahi hua toh calls rukengi nahi aur stack overflow ho sakta hai.</div><p><b>Do essential parts:</b> base case (kab rukna hai) + recursive case (problem ko chhota karke dobara solve karna).</p></article>
+<article class="card"><div class="tag">2.2 · Comparison</div><h2>Recursion vs Iteration</h2><table width="100%" cellpadding="8"><tr><th align="left">Recursion</th><th align="left">Iteration</th></tr><tr><td>Function khud ko call karta hai</td><td>Loop repeat hota hai</td></tr><tr><td>Call stack use hota hai</td><td>Usually loop variables</td></tr><tr><td>Base case se rukta hai</td><td>Loop condition false hone par rukta hai</td></tr><tr><td>Elegant for self-similar problems</td><td>Often less call overhead</td></tr></table><p class="source">Supplementary comparison for learning; source section 2.2 introduces this contrast.</p></article>
+<article class="card"><div class="tag">Call stack</div><h2>Function calls kaise return hote hain?</h2><svg viewBox="0 0 520 205" role="img" aria-label="Recursion call stack"><rect x="20" y="12" width="145" height="38" rx="8" fill="#203858" stroke="#79e0c3"/><text x="92" y="36" fill="#eef3ff" text-anchor="middle">fact(3)</text><path d="M165 31 H210" stroke="#79e0c3" stroke-width="2"/><path d="M202 25 L210 31 L202 37" fill="none" stroke="#79e0c3" stroke-width="2"/><rect x="220" y="12" width="125" height="38" rx="8" fill="#203858" stroke="#79e0c3"/><text x="282" y="36" fill="#eef3ff" text-anchor="middle">fact(2)</text><path d="M345 31 H375" stroke="#79e0c3" stroke-width="2"/><path d="M367 25 L375 31 L367 37" fill="none" stroke="#79e0c3" stroke-width="2"/><rect x="385" y="12" width="115" height="38" rx="8" fill="#203858" stroke="#79e0c3"/><text x="442" y="36" fill="#eef3ff" text-anchor="middle">fact(1)</text><text x="260" y="85" fill="#aab7d3" text-anchor="middle">Calls go deeper → base case</text><path d="M442 60 V112 H282 V128" fill="none" stroke="#9aaeff" stroke-width="2"/><path d="M276 120 L282 128 L288 120" fill="none" stroke="#9aaeff" stroke-width="2"/><rect x="205" y="132" width="155" height="38" rx="8" fill="#163b35" stroke="#79e0c3"/><text x="282" y="156" fill="#eef3ff" text-anchor="middle">Return values</text><text x="260" y="195" fill="#aab7d3" text-anchor="middle">Unwinding happens in reverse order</text></svg></article>
+<article class="card"><div class="tag">2.3 · Factorial</div><h2>Factorial of n</h2><p>Mathematically: n! = n × (n−1) × … × 1, and 0! = 1.</p><pre>fact(n):
+  if n <= 1: return 1
+  return n * fact(n-1)</pre><p>Example: fact(4) = 4 × fact(3) = 4 × 3 × 2 × 1 = <b>24</b>.</p></article>
+<article class="card"><div class="tag">2.4 · Towers of Hanoi</div><h2>3 towers, n disks</h2><p>Goal: saare disks source tower se destination tower par move karo. Ek time par ek disk move; bigger disk smaller disk ke upar nahi rakh sakte.</p><div class="callout">Recurrence: T(n) = 2T(n−1) + 1, T(1)=1. Minimum moves = 2ⁿ − 1. For 3 disks: 7 moves; for 4: 15 moves.</div><svg viewBox="0 0 440 150"><line x1="35" y1="125" x2="405" y2="125" stroke="#9aaeff" stroke-width="3"/><g stroke="#9aaeff" stroke-width="5"><line x1="95" y1="35" x2="95" y2="125"/><line x1="220" y1="35" x2="220" y2="125"/><line x1="345" y1="35" x2="345" y2="125"/></g><rect x="58" y="96" width="74" height="16" rx="4" fill="#79e0c3"/><rect x="67" y="78" width="56" height="16" rx="4" fill="#9aaeff"/><rect x="77" y="60" width="36" height="16" rx="4" fill="#e5bd7b"/><text x="95" y="144" fill="#eef3ff" text-anchor="middle">Source</text><text x="220" y="144" fill="#eef3ff" text-anchor="middle">Auxiliary</text><text x="345" y="144" fill="#eef3ff" text-anchor="middle">Destination</text></svg></article>
+<article class="card"><div class="tag">2.5 · Fibonacci</div><h2>Fibonacci sequence</h2><p>Source definition starts with 0 and 1; every next value is previous two ka sum.</p><pre>fib(n):
+  if n == 0 or n == 1: return n
+  return fib(n-1) + fib(n-2)</pre><p>Sequence: 0, 1, 1, 2, 3, 5, 8, 13, 21…</p><p class="source">Note: the naive recursive version repeats calculations (e.g. fib(2) appears multiple times), as discussed in the PDF.</p></article>
+</div>
+</section>
+<section id="answers" class="pane hide">
+<div class="card"><div class="tag">2 marks</div><h2>Define recursion.</h2><p>Recursion is a programming technique in which a function calls itself to solve a smaller instance of the same problem. A base case stops further calls.</p></div>
+<div class="card"><div class="tag">2 marks</div><h2>What is a base case?</h2><p>A base case is the stopping condition in a recursive function. It returns a result without making another recursive call and prevents endless recursion.</p></div>
+<div class="card"><div class="tag">4 marks</div><h2>Differentiate recursion and iteration.</h2><p>1. Recursion uses repeated function calls; iteration uses loops. 2. Recursion uses the call stack for each active call; iteration generally reuses loop state. 3. Recursion ends at a base case; iteration ends when its loop condition becomes false. 4. Recursion can be clearer for naturally recursive problems, while iteration may avoid function-call overhead.</p></div>
+<div class="card"><div class="tag">4 marks</div><h2>Explain Fibonacci using recursion.</h2><p>F(0)=0 and F(1)=1 are base cases. For n≥2, F(n)=F(n−1)+F(n−2). The function calls itself for the two previous positions and adds their values. Example: F(5)=F(4)+F(3)=3+2=5. Naive recursion repeats subproblems.</p></div>
+<div class="card"><div class="tag">6 marks</div><h2>Explain Towers of Hanoi with algorithm and recurrence.</h2><p>For n disks, move the top n−1 disks from source to auxiliary, move the largest disk from source to destination, then move n−1 disks from auxiliary to destination. Base case: for one disk, move it directly. Recurrence: T(n)=2T(n−1)+1 with T(1)=1. Therefore T(n)=2ⁿ−1. For n=3, the minimum is 7 moves.</p><pre>TOH(n, source, auxiliary, destination):
+  if n == 1:
+    print move source → destination
+    return
+  TOH(n-1, source, destination, auxiliary)
+  print move source → destination
+  TOH(n-1, auxiliary, source, destination)</pre></div>
+<div class="card"><div class="tag">6 marks</div><h2>Explain recursive factorial with trace.</h2><p>Factorial is n! = n × (n−1)! for n&gt;1, with 0!=1 and 1!=1. The recursive case reduces n by one. Example: fact(4) → 4×fact(3) → 4×3×fact(2) → 4×3×2×fact(1) → 24. Each call returns after the base case is reached.</p></div>
+<p class="source">These are exam-ready supplementary answer drafts aligned to the PDF topics, not quotations from the source.</p>
+</section>
+<section id="programs" class="pane hide">
+<div class="card"><h2>1. Factorial (C)</h2><pre>#include &lt;stdio.h&gt;
+long long fact(int n) {
+    if (n &lt;= 1) return 1;
+    return n * fact(n - 1);
+}
+int main(void) {
+    int n = 5;
+    printf("%d! = %lld\\n", n, fact(n));
+    return 0;
+}</pre><p><b>Output:</b></p><pre>5! = 120</pre><p class="source">Clean, standard-C supplementary version; source PDF's chapter includes a factorial example but its formatting reflects older compiler conventions.</p></div>
+<div class="card"><h2>2. Fibonacci (C)</h2><pre>#include &lt;stdio.h&gt;
+int fib(int n) {
+    if (n == 0 || n == 1) return n;
+    return fib(n - 1) + fib(n - 2);
+}
+int main(void) {
+    for (int i = 0; i &lt; 8; i++) printf("%d ", fib(i));
+    printf("\\n");
+    return 0;
+}</pre><p><b>Output:</b></p><pre>0 1 1 2 3 5 8 13</pre></div>
+<div class="card"><h2>3. Towers of Hanoi (C)</h2><pre>#include &lt;stdio.h&gt;
+void hanoi(int n, char from, char aux, char to) {
+    if (n == 1) {
+        printf("Move disk 1 from %c to %c\\n", from, to);
+        return;
+    }
+    hanoi(n-1, from, to, aux);
+    printf("Move disk %d from %c to %c\\n", n, from, to);
+    hanoi(n-1, aux, from, to);
+}
+int main(void) {
+    hanoi(3, 'A', 'B', 'C');
+    return 0;
+}</pre><p><b>Output (7 moves):</b></p><pre>Move disk 1 from A to C
+Move disk 2 from A to B
+Move disk 1 from C to B
+Move disk 3 from A to C
+Move disk 1 from B to A
+Move disk 2 from B to C
+Move disk 1 from A to C</pre></div>
+<div class="card"><h2>4. GCD of two integers (Euclid's algorithm)</h2><pre>#include &lt;stdio.h&gt;
+int gcd(int a, int b) {
+    if (b == 0) return a;
+    return gcd(b, a % b);
+}
+int main(void) {
+    printf("GCD = %d\\n", gcd(99, 55));
+    return 0;
+}</pre><p><b>Output:</b></p><pre>GCD = 11</pre><p class="source">Supplementary implementation: the PDF’s GCD program uses a prime-factor-based method for a list of numbers. This two-number Euclidean version is an additional simpler example, not a replacement for the source program.</p></div>
+</section>
+<section id="trace" class="pane hide"><div class="card"><h2>Interactive factorial trace</h2><p>Change n and watch the call chain and result.</p><label>n (0–10): <input id="factN" type="number" min="0" max="10" value="4"></label><button class="primary" id="traceBtn">Trace it</button><div id="traceOut" class="card"></div></div>
+<div class="card"><h2>Hanoi move calculator</h2><p>Formula from the recursive recurrence: minimum moves = 2ⁿ − 1.</p><label>Number of disks (1–20): <input id="hanoiN" type="number" min="1" max="20" value="3"></label><button id="hanoiBtn" class="primary">Calculate</button><div id="hanoiOut" class="answer"></div></div>
+<div class="card"><h2>Recursion concept check</h2><p>If each call reduces n by 1 and stops at n=1, how many active calls occur for n=4?</p><div class="options"><button onclick="concept(this,false)">3</button><button onclick="concept(this,true)">4</button><button onclick="concept(this,false)">5</button></div><div class="answer" id="conceptAnswer"></div></div></section>
+<section id="flash" class="pane hide"><div class="card"><h2>Flashcards</h2><p>Click the card to flip. Mark cards you know; progress stays in this browser.</p><div class="flash" id="flashCard" role="button" tabindex="0">What is recursion?</div><div class="stats"><button id="prevFlash">← Previous</button><button id="flipFlash" class="primary">Flip card</button><button id="nextFlash">Next →</button><button id="knowFlash">✓ I know this</button></div><p id="flashCount" class="answer"></p></div></section>
+<section id="quiz" class="pane hide"><div class="card"><h2>Chapter MCQ practice</h2><p>Choose an answer to see feedback. Questions are based on the chapter's core topics; where source MCQ wording is unclear, these are labelled practice questions.</p><div id="quizQuestions"></div><button class="primary" id="gradeQuiz">Score quiz</button><p id="quizScore"></p></div></section>
+<section id="mock" class="pane hide"><div class="card"><h2>10-question mock test</h2><p>Try without notes. Each question is worth 1 mark. Answers appear after submission.</p><div id="mockQuestions"></div><button class="primary" id="submitMock">Submit mock test</button><div id="mockResult"></div></div></section>
+<section id="revision" class="pane hide"><div class="card"><h2>Last-minute revision sheet</h2><ul><li>Recursion = function calling itself.</li><li>Always identify the base case and recursive case.</li><li>Factorial: n! = n × (n−1)!, with 0! = 1.</li><li>Fibonacci: F(0)=0, F(1)=1, F(n)=F(n−1)+F(n−2).</li><li>Towers of Hanoi: T(n)=2T(n−1)+1; minimum moves 2ⁿ−1.</li><li>Naive Fibonacci recursion recomputes overlapping subproblems.</li><li>Recursion uses the runtime call stack; excessive depth can cause stack overflow.</li><li>PDF topics also include recursive NCR, LCM and GCD programs.</li></ul></div><div class="card"><h2>Mark your revision</h2><div id="checklist"></div><button class="primary" id="saveChecklist">Save revision progress</button><p id="checkMsg" class="answer"></p></div></section>
+<section id="audit" class="pane hide"><div class="card"><h2>Chapter 2 PDF audit notes</h2><p><b>Source:</b> uploaded DS.pdf, Chapter 2 “Recursion”; visible chapter content spans PDF pages around 18–27 (printed lecture-note pages 14–22, depending on front matter). Audit scope focuses on the chapter’s text, code and diagrams.</p><ul><li><b>2.1 Introduction to Recursion:</b> recursive-function concept, stopping case and call behavior checked against chapter text.</li><li><b>2.2 Recursion vs Iteration:</b> comparison topic retained; comparison table here is a clearly labelled teaching summary.</li><li><b>2.3 Factorial:</b> recursive factorial and its output/example retained; code in this portal is a cleaned standard-C learning version.</li><li><b>2.4 Towers of Hanoi:</b> recursive strategy and source outputs for 3 and 4 disks checked; move count shown as 2ⁿ−1.</li><li><b>2.5 Fibonacci:</b> source sequence, recursive definition, fib(5)=5 and repeated subproblem observation retained.</li><li><b>2.6 NCR:</b> source provides recursive NCR program and example n=5, r=2 → 10. The PDF’s declared return type/variable choices are inconsistent in places; use the provided example as source reference and verify types when coding.</li><li><b>2.7 LCM:</b> source uses recursive prime-factor reduction for an array of integers; example values 6, 5, 4, 3, 2, 1 produce LCM 60. The printed code has apparent naming/declaration/semicolon issues, so do not copy it blindly.</li><li><b>2.8 GCD:</b> source uses recursive common-prime-factor checking for multiple integers; example 99, 55, 22, 77, 121 produces GCD 11.</li><li><b>Exercises and MCQs:</b> stopping case, recursive patterns, prime checking, character input and recursion depth are included in the chapter. Practice items here supplement those themes.</li><li><b>Diagrams:</b> recursion call/return and Towers of Hanoi are redrawn for teaching. The source chapter is mainly text, code and printed output rather than a large set of formal diagrams.</li></ul><p class="callout"><b>Transparency:</b> This is a structured content audit, not a claim that every scanned page was pixel-perfectly OCR-verified. Source-derived topics are separated from supplementary explanations and cleaned examples. Where original code appears malformed, it is flagged rather than silently treated as correct.</p></div></section>
+<footer>DS Exam Buddy · Chapter 2: Recursion · Self-contained offline HTML</footer>
+</div>
+<script>
+const panes=[...document.querySelectorAll('.pane')];document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('active',x===b));panes.forEach(p=>p.classList.toggle('hide',p.id!==b.dataset.tab));});
+const flashcards=[
+["What is recursion?","A function calling itself to solve a smaller instance of a problem."],
+["What is the base case?","The stopping condition that returns without another recursive call."],
+["Factorial recurrence?","fact(n)=n×fact(n−1), with fact(0)=fact(1)=1."],
+["Fibonacci recurrence?","F(0)=0, F(1)=1; F(n)=F(n−1)+F(n−2) for n≥2."],
+["Hanoi minimum moves for n disks?","2ⁿ−1."],
+["Hanoi recurrence?","T(n)=2T(n−1)+1, with T(1)=1."],
+["What is a risk of unbounded recursion?","The call stack can overflow."],
+["What is a drawback of naive recursive Fibonacci?","Overlapping subproblems are recomputed many times."],
+["What is iteration?","Repeating steps using a loop until its condition becomes false."],
+["Which chapter programs use recursion besides factorial/Fibonacci?","NCR, LCM and GCD are also listed in the source chapter."]
+];
+let fi=0,flipped=false,known=JSON.parse(localStorage.getItem('ds2known')||'[]');
+function drawFlash(){document.getElementById('flashCard').textContent=flipped?flashcards[fi][1]:flashcards[fi][0];document.getElementById('flashCount').textContent=`Card ${fi+1} of ${flashcards.length} · ${known.includes(fi)?'✓ Marked known':'Not marked known'}`;document.getElementById('knownText').textContent=known.length;}
+function setProgress(){let checks=JSON.parse(localStorage.getItem('ds2checks')||'[]');let pct=Math.round((checks.length/8)*100);document.getElementById('progressText').textContent=pct+'%';document.getElementById('progressBar').style.width=pct+'%';document.getElementById('bestText').textContent=localStorage.getItem('ds2best')||'0';document.getElementById('knownText').textContent=known.length;}
+document.getElementById('prevFlash').onclick=()=>{fi=(fi+flashcards.length-1)%flashcards.length;flipped=false;drawFlash()};document.getElementById('nextFlash').onclick=()=>{fi=(fi+1)%flashcards.length;flipped=false;drawFlash()};document.getElementById('flipFlash').onclick=()=>{flipped=!flipped;drawFlash()};document.getElementById('flashCard').onclick=()=>{flipped=!flipped;drawFlash()};document.getElementById('knowFlash').onclick=()=>{if(!known.includes(fi))known.push(fi);localStorage.setItem('ds2known',JSON.stringify(known));drawFlash();setProgress()};
+document.getElementById('traceBtn').onclick=()=>{let n=Number(document.getElementById('factN').value);n=Math.max(0,Math.min(10,Math.floor(n||0)));let chain=[];for(let i=n;i>1;i--)chain.push(i);chain.push(1);let result=1;for(let i=2;i<=n;i++)result*=i;document.getElementById('traceOut').innerHTML='<b>Calls:</b><pre>'+chain.map(x=>'fact('+x+')').join(' → ')+' → return 1</pre><b>Unwinding:</b><pre>'+Array.from({length:Math.max(0,n-1)},(_,i)=>n-i).filter(x=>x>1).map(x=>'fact('+x+') returns '+Array.from({length:x},(_,j)=>j+1).reduce((a,b)=>a*b,1)).join('\\n')+'</pre><b>Result:</b> '+result;markCheck(0)};
+document.getElementById('hanoiBtn').onclick=()=>{let n=Math.max(1,Math.min(20,Math.floor(Number(document.getElementById('hanoiN').value)||1)));document.getElementById('hanoiOut').innerHTML=`For n = ${n}: 2<sup>${n}</sup> − 1 = <b>${2**n-1} moves</b>.`;markCheck(1)};
+function concept(btn,ok){document.querySelectorAll('#trace .options button').forEach(b=>b.classList.remove('correct','wrong'));btn.classList.add(ok?'correct':'wrong');document.getElementById('conceptAnswer').textContent=ok?'Correct: calls are n=4, 3, 2, 1 — four active calls.':'Not quite. Count n=4, 3, 2, 1: four calls.';markCheck(2)}
+const qs=[
+{q:"What must a correct recursive function include to stop?",o:["A global variable","A base case","A for loop","A pointer"],a:1,e:"The base case stops recursive calls."},
+{q:"Which is the Fibonacci recurrence for n ≥ 2?",o:["F(n)=F(n−1)−F(n−2)","F(n)=n×F(n−1)","F(n)=F(n−1)+F(n−2)","F(n)=2n"],a:2,e:"Each term is the sum of the previous two."},
+{q:"Minimum Hanoi moves for 3 disks?",o:["5","6","7","8"],a:2,e:"2³−1 = 7."},
+{q:"What is 4!?",o:["10","16","24","120"],a:2,e:"4×3×2×1 = 24."},
+{q:"Which may happen if recursion does not approach a base case?",o:["Stack overflow","Array automatically sorts","Memory always decreases","Program always terminates"],a:0,e:"Unbounded calls can exhaust the runtime stack."},
+{q:"What is the source sequence beginning for Fibonacci?",o:["1,1,2,3","0,1,1,2,3","0,2,4,6","1,2,4,8"],a:1,e:"The PDF starts with 0 and 1."},
+{q:"For n=1, the minimum Hanoi moves are:",o:["0","1","2","3"],a:1,e:"One disk can be moved directly."},
+{q:"Naive recursive Fibonacci often repeats:",o:["Input validation","Subproblems","The main function only","Array allocation"],a:1,e:"It recomputes values such as fib(2) multiple times."},
+{q:"Which topic is listed as section 2.6?",o:["Binary search","NCR using recursion","Stack operations","Linked lists"],a:1,e:"Section 2.6 is recursive calculation of NCR."},
+{q:"What is the main difference between recursion and iteration?",o:["Recursion always faster","Iteration calls itself","Recursion uses function calls; iteration uses loops","They are identical"],a:2,e:"That is the central conceptual distinction."}
+];
+function renderQuestions(target,arr,prefix){document.getElementById(target).innerHTML=arr.map((q,i)=>`<div class="question"><b>${i+1}. ${q.q}</b><div class="options">${q.o.map((o,j)=>`<button data-i="${i}" data-j="${j}">${String.fromCharCode(65+j)}. ${o}</button>`).join('')}</div><div class="answer" id="${prefix}e${i}"></div></div>`).join('');document.querySelectorAll('#'+target+' .options button').forEach(b=>b.onclick=()=>{let i=+b.dataset.i,j=+b.dataset.j,q=arr[i];document.querySelectorAll(`#${target} button[data-i="${i}"]`).forEach(x=>x.classList.remove('correct','wrong'));b.classList.add(j===q.a?'correct':'wrong');document.getElementById(prefix+'e'+i).textContent=(j===q.a?'Correct. ':'Try again. ')+q.e; b.dataset.chosen=j;markCheck(3);});}
+renderQuestions('quizQuestions',qs,'qe');renderQuestions('mockQuestions',qs,'me');
+document.getElementById('gradeQuiz').onclick=()=>score('quizQuestions',qs,'quizScore','ds2best');document.getElementById('submitMock').onclick=()=>{score('mockQuestions',qs,'mockResult','ds2best');markCheck(4)};
+function score(target,arr,out,key){let s=0;arr.forEach((q,i)=>{let b=document.querySelector(`#${target} button[data-i="${i}"][data-chosen="${q.a}"]`);if(b)s++});document.getElementById(out).innerHTML=`<b>Score: ${s}/${arr.length} (${Math.round(100*s/arr.length)}%)</b><p>Review the feedback under each question and retry weak areas.</p>`;let old=Number(localStorage.getItem(key)||0);if(s>old)localStorage.setItem(key,s);setProgress();}
+const topics=['I can define recursion and base case','I can compare recursion and iteration','I can trace factorial','I can explain Towers of Hanoi','I can trace Fibonacci','I can identify repeated subproblems','I reviewed NCR, LCM and GCD source topics','I attempted quiz or mock test'];
+function drawChecklist(){let c=JSON.parse(localStorage.getItem('ds2checks')||'[]');document.getElementById('checklist').innerHTML=topics.map((t,i)=>`<label class="mark"><input type="checkbox" data-c="${i}" ${c.includes(i)?'checked':''}> ${t}</label>`).join('');document.querySelectorAll('#checklist input').forEach(x=>x.onchange=()=>{let a=JSON.parse(localStorage.getItem('ds2checks')||'[]'),i=+x.dataset.c;a=x.checked?[...new Set([...a,i])]:a.filter(v=>v!==i);localStorage.setItem('ds2checks',JSON.stringify(a));setProgress()})}
+document.getElementById('saveChecklist').onclick=()=>{document.getElementById('checkMsg').textContent='Saved in this browser.';setProgress()};function markCheck(i){let a=JSON.parse(localStorage.getItem('ds2checks')||'[]');if(!a.includes(i)){a.push(i);localStorage.setItem('ds2checks',JSON.stringify(a));drawChecklist();setProgress()}}
+drawFlash();drawChecklist();setProgress();
+</script>
+</body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maths Unit 4 Exam Buddy</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,Arial,sans-serif;background:#f4f6fb;color:#182033}
+header{background:#263da8;color:white;padding:24px 16px}header,main{width:100%}.wrap{max-width:900px;margin:auto}
+h1{margin:0 0 8px;font-size:clamp(25px,5vw,38px)}main{max-width:900px;margin:auto;padding:14px}
+nav{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 18px}button{border:0;border-radius:9px;padding:11px 14px;background:#405cf5;color:white;font-weight:650;cursor:pointer;font-size:15px}
+nav button{background:white;color:#24315d;border:1px solid #dce1ed}.active{background:#405cf5!important;color:white!important}
+.panel{display:none}.panel.active{display:block}.card{background:white;border:1px solid #e2e6ef;border-radius:14px;padding:17px;margin:12px 0;box-shadow:0 3px 12px #18203308}
+.formula{background:#eff2ff;border-left:4px solid #405cf5;padding:11px;border-radius:7px;overflow-wrap:anywhere;font-weight:600}
+.answer{display:none;background:#effaf3;border-left:4px solid #14804a;padding:12px;margin-top:8px;border-radius:7px}.answer.show{display:block}
+.q{padding:12px 0;border-bottom:1px solid #eee}.q label{display:block;margin:7px 0}.muted{color:#667085}.flash{background:#eff2ff;text-align:center;min-height:155px;display:flex;flex-direction:column;justify-content:center;cursor:pointer}
+footer{text-align:center;color:#667085;padding:22px;font-size:13px}
+</style>
+
+<style>
+body, main, .panel, .card, .card p, .card h2, .card h3, .card li,
+.card b, .card strong, .card label, .formula, .q, .q b, .q label,
+#flash, #flash b, #flash p {
+  color: #182033 !important;
+}
+.formula { background: #eff2ff !important; }
+.answer { color: #182033 !important; background: #effaf3 !important; }
+header, header p, header h1 { color: #ffffff !important; }
+nav button { color: #24315d; }
+nav button.active { color: #ffffff !important; }
+</style>
+
+</head>
+<body>
+<header><div class="wrap"><h1>Maths Unit 4 — Exam Buddy 📚</h1>
+<p>Joint Probability • Marginal Functions • Joint Distribution • Continuous Density</p>
+<p>Bhai, sab ek jagah: teacher-style explanation, short notes, quiz, 2/4-mark answers aur flashcards.</p></div></header>
+<main>
+<nav>
+<button class="active" data-tab="learn">Teach Me</button><button data-tab="notes">Short Revision</button><button data-tab="quiz">Practice Quiz</button><button data-tab="two">2 Marks</button><button data-tab="four">4 Marks</button><button data-tab="cards">Flashcards</button>
+</nav>
+<section id="learn" class="panel active">
+<div class="card"><h2>1. Joint probability</h2><p>Jab do random variables X aur Y ki values ek saath di hoti hain, joint probability batati hai ki X bhi particular value ho aur Y bhi particular value ho.</p><div class="formula">f(x,y) = P(X = x, Y = y)</div><p>Discrete joint table ki saari probabilities ka total 1 hota hai.</p></div>
+<div class="card"><h2>2. Marginal probability functions</h2><p>Marginal matlab sirf ek variable ki probability. Doosre variable ki saari values ko add ya integrate karke hata dete hain.</p><div class="formula">Discrete: fX(x) = Σy f(x,y) &nbsp; | &nbsp; fY(y) = Σx f(x,y)</div><div class="formula">Continuous: fX(x) = ∫ f(x,y) dy &nbsp; | &nbsp; fY(y) = ∫ f(x,y) dx</div><p><b>Yaad rakh:</b> fX chahiye to y ko sum/integrate out karo. fY chahiye to x ko sum/integrate out karo.</p></div>
+<div class="card"><h2>3. PDF wala discrete numerical</h2><p>Table entries: c, 2c, 3c / 2c, 4c, 6c / 3c, 6c, 9c.</p><p>All entries ka total = 36c. Total probability 1 hoti hai.</p><div class="formula">36c = 1 ⇒ c = 1/36</div><p>Row totals se fX(x)=x/6 aur column totals se fY(y)=y/6, x,y=1,2,3.</p><p>Independence check: fX(x)fY(y)=(x/6)(y/6)=xy/36=f(x,y). Isliye X aur Y independent hain.</p></div>
+<div class="card"><h2>4. Continuous joint density</h2><p>Valid density non-negative hoti hai aur full region par double integral 1 hota hai.</p><div class="formula">∫∫ f(x,y) dx dy = 1</div><div class="formula">F(x,y) = ∫ from −∞ to x ∫ from −∞ to y f(u,v) dv du</div><p>Marginal X ke liye y par integrate karo; marginal Y ke liye x par integrate karo.</p></div>
+<div class="card"><h2>5. Continuous numerical: c(2x+y)</h2><p>Given f(x,y)=c(2x+y), 0&lt;x&lt;1, 0&lt;y&lt;2.</p><div class="formula">c ∫₀¹ ∫₀² (2x+y) dy dx = 1</div><p>Inner integral = 4x+2. Outer integral ∫₀¹(4x+2)dx=4. So 4c=1 and <b>c=1/4</b>.</p><div class="formula">fX(x)=(2x+1)/2, 0&lt;x&lt;1</div><div class="formula">fY(y)=(1+y)/4, 0&lt;y&lt;2</div><p class="muted">Notes ke doosre region 2&lt;x&lt;6, 0&lt;y&lt;5 ke results: c=1/210, fX(x)=(4x+5)/84, fY(y)=(16+2y)/105.</p></div>
+</section>
+<section id="notes" class="panel"><div class="card"><h2>Last-minute revision</h2><ul><li>Joint PMF: f(x,y)=P(X=x,Y=y).</li><li>Discrete probabilities ka total = 1.</li><li>Marginal X: y par sum/integrate; marginal Y: x par sum/integrate.</li><li>Continuous density non-negative; total double integral = 1.</li><li>Joint CDF: F(x,y)=P(X≤x,Y≤y).</li><li>Independence: f(x,y)=fX(x)fY(y).</li><li>Discrete region probability: required cells add karo.</li><li>Continuous region probability: density ko required region par integrate karo.</li></ul></div><div class="card"><h3>Important numerical answers</h3><p>Discrete: c=1/36; fX=x/6; fY=y/6; independent.</p><p>0&lt;x&lt;1, 0&lt;y&lt;2: c=1/4; fX=(2x+1)/2; fY=(1+y)/4.</p><p>2&lt;x&lt;6, 0&lt;y&lt;5: c=1/210; fX=(4x+5)/84; fY=(16+2y)/105.</p></div></section>
+<section id="quiz" class="panel"><div class="card"><h2>Practice quiz</h2><p>Choose answers and tap Check Answers.</p>
+<form id="quizForm">
+<div class="q"><b>1. Joint table ki saari probabilities ka total?</b><label><input type="radio" name="q1" value="a"> 0</label><label><input type="radio" name="q1" value="b"> 1</label><label><input type="radio" name="q1" value="c"> c</label></div>
+<div class="q"><b>2. fX(x) ke liye kya karte hain?</b><label><input type="radio" name="q2" value="a"> x par integrate</label><label><input type="radio" name="q2" value="b"> y par sum/integrate</label><label><input type="radio" name="q2" value="c"> hamesha multiply</label></div>
+<div class="q"><b>3. c(2x+y), 0&lt;x&lt;1, 0&lt;y&lt;2 mein c?</b><label><input type="radio" name="q3" value="a"> 1/2</label><label><input type="radio" name="q3" value="b"> 1/4</label><label><input type="radio" name="q3" value="c"> 1/6</label></div>
+<div class="q"><b>4. Independence formula?</b><label><input type="radio" name="q4" value="a"> f=fX+fY</label><label><input type="radio" name="q4" value="b"> f=fX×fY</label><label><input type="radio" name="q4" value="c"> f=0</label></div>
+<div class="q"><b>5. Continuous density ka total integral?</b><label><input type="radio" name="q5" value="a"> 1</label><label><input type="radio" name="q5" value="b"> 0</label><label><input type="radio" name="q5" value="c"> 100</label></div>
+<button type="button" id="check">Check Answers</button><p id="score"></p><div id="expl" class="answer">Correct: 1-B, 2-B, 3-B, 4-B, 5-A. Total probability/integral 1 hota hai; fX ke liye y out hota hai; c=1/4; independence mein joint = product of marginals.</div>
+</form></div><div class="card"><h3>Quick numerical</h3><p><b>Q:</b> Table total 36c hai. c find karo.</p><button type="button" onclick="toggle('n1')">Show solution</button><div id="n1" class="answer">36c=1 ⇒ c=1/36.</div><p><b>Q:</b> fX(x) ke liye kis variable par integrate karoge?</p><button type="button" onclick="toggle('n2')">Show answer</button><div id="n2" class="answer">y par: fX(x)=∫f(x,y)dy.</div></div></section>
+<section id="two" class="panel"><div class="card"><h2>Important 2-mark answers</h2>
+<p><b>1. Define joint probability function.</b><br><button type="button" onclick="toggle('a21')">Show answer</button><div id="a21" class="answer">For two discrete random variables X and Y, f(x,y)=P(X=x,Y=y). It gives the probability that both events occur together.</div></p>
+<p><b>2. What are marginal functions?</b><br><button type="button" onclick="toggle('a22')">Show answer</button><div id="a22" class="answer">Marginal functions give the distribution of one variable separately. Discrete: fX(x)=Σy f(x,y), fY(y)=Σx f(x,y).</div></p>
+<p><b>3. Condition for continuous density?</b><br><button type="button" onclick="toggle('a23')">Show answer</button><div id="a23" class="answer">f(x,y) must be non-negative and its double integral over the whole valid region must equal 1.</div></p>
+<p><b>4. Write continuous marginal formulas.</b><br><button type="button" onclick="toggle('a24')">Show answer</button><div id="a24" class="answer">fX(x)=∫f(x,y)dy over allowed y; fY(y)=∫f(x,y)dx over allowed x.</div></p>
+<p><b>5. Condition for independence?</b><br><button type="button" onclick="toggle('a25')">Show answer</button><div id="a25" class="answer">X and Y independent if f(x,y)=fX(x)fY(y) for all valid x,y.</div></p>
+</div></section>
+<section id="four" class="panel"><div class="card"><h2>Important 4-mark answers</h2>
+<p><b>1. How to find marginals from a discrete joint table?</b><br><button type="button" onclick="toggle('a41')">Show answer</button><div id="a41" class="answer">To find fX(x), add each row across all y values. To find fY(y), add each column across all x values. In the notes, total=36c, so c=1/36; fX=x/6 and fY=y/6 for x,y=1,2,3.</div></p>
+<p><b>2. Find c for f=c(2x+y), 0&lt;x&lt;1, 0&lt;y&lt;2.</b><br><button type="button" onclick="toggle('a42')">Show answer</button><div id="a42" class="answer">∫₀¹∫₀²c(2x+y)dy dx=1. Inner integral is 4x+2. Then ∫₀¹(4x+2)dx=4. Thus 4c=1 and c=1/4.</div></p>
+<p><b>3. Find marginal densities for that example.</b><br><button type="button" onclick="toggle('a43')">Show answer</button><div id="a43" class="answer">fX(x)=∫₀²(1/4)(2x+y)dy=(2x+1)/2. fY(y)=∫₀¹(1/4)(2x+y)dx=(1+y)/4.</div></p>
+<p><b>4. Explain joint distribution function.</b><br><button type="button" onclick="toggle('a44')">Show answer</button><div id="a44" class="answer">F(x,y)=P(X≤x,Y≤y). For continuous variables, integrate the joint density over the region u≤x and v≤y.</div></p>
+</div></section>
+<section id="cards" class="panel"><div class="card"><h2>Flashcards 🧠</h2><p>Click the card to reveal the answer.</p><div id="flash" class="card flash" onclick="flip()"><b id="fq">Joint probability function?</b><p id="fa" class="answer">f(x,y)=P(X=x,Y=y).</p><p class="muted" id="count">Card 1/8</p></div><button type="button" onclick="prev()">← Previous</button> <button type="button" onclick="next()">Next →</button> <button type="button" onclick="flip()">Flip</button></div></section>
+<footer>Unit 4 Exam Buddy • Based on the Unit 4 notes shared in this chat.</footer>
+</main>
+<script>
+document.querySelectorAll('nav button').forEach(function(b){b.addEventListener('click',function(){document.querySelectorAll('nav button').forEach(function(x){x.classList.remove('active')});b.classList.add('active');document.querySelectorAll('.panel').forEach(function(x){x.classList.remove('active')});document.getElementById(b.dataset.tab).classList.add('active');window.scrollTo(0,0)})});
+function toggle(id){document.getElementById(id).classList.toggle('show')}
+document.getElementById('check').addEventListener('click',function(){var a={q1:'b',q2:'b',q3:'b',q4:'b',q5:'a'},s=0;Object.keys(a).forEach(function(k){var x=document.querySelector('input[name="'+k+'"]:checked');if(x&&x.value===a[k])s++});document.getElementById('score').textContent='Your score: '+s+'/5';document.getElementById('expl').classList.add('show')});
+var cards=[['Joint probability function?','f(x,y)=P(X=x,Y=y).'],['Discrete total probability?','All joint table probabilities add to 1.'],['How to get fX(x)?','Sum/integrate over y.'],['How to get fY(y)?','Sum/integrate over x.'],['Continuous density total integral?','1 over the whole valid region.'],['Independence condition?','f(x,y)=fX(x)fY(y).'],['c for the small continuous example?','c=1/4.'],['Joint CDF means?','F(x,y)=P(X≤x,Y≤y).']],i=0,shown=false;
+function render(){document.getElementById('fq').textContent=cards[i][0];document.getElementById('fa').textContent=cards[i][1];document.getElementById('fa').classList.toggle('show',shown);document.getElementById('count').textContent='Card '+(i+1)+'/8'}
+function flip(){shown=!shown;render()}function next(){i=(i+1)%cards.length;shown=false;render()}function prev(){i=(i+cards.length-1)%cards.length;shown=false;render()}
+</script>
+</body></html>

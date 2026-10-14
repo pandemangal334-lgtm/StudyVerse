@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISE Unit 3 | Exam Buddy</title>
+<style>
+:root{--bg:#0b1020;--panel:#131b30;--panel2:#18233d;--text:#eef3ff;--muted:#aab6d3;--accent:#7c9cff;--accent2:#56e0c2;--line:#2b3858;--good:#65dfa7;--bad:#ff8585}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#1b2c53 0,#0b1020 42%);font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--text);line-height:1.6}
+header{padding:28px 18px 22px;max-width:1180px;margin:auto} .eyebrow{color:var(--accent2);font-weight:800;letter-spacing:2px;font-size:.78rem;text-transform:uppercase}
+h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.08;margin:10px 0}header p{color:var(--muted);max-width:780px;margin:12px 0 18px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}.pill{border:1px solid var(--line);border-radius:99px;padding:5px 11px;color:#dbe5ff;font-size:.83rem;background:#111a2e}
+.shell{max-width:1180px;margin:auto;padding:0 18px 50px;display:grid;grid-template-columns:230px minmax(0,1fr);gap:18px}
+nav,.card{background:rgba(19,27,48,.94);border:1px solid var(--line);border-radius:18px}
+nav{padding:12px;height:max-content;position:sticky;top:12px}nav button{width:100%;text-align:left;background:transparent;border:0;color:var(--muted);padding:11px 12px;border-radius:10px;cursor:pointer;font-size:.95rem}nav button.active,nav button:hover{background:var(--panel2);color:var(--text)}
+main{min-width:0}.section{display:none}.section.active{display:block}.card{padding:20px;margin-bottom:15px}.card h2{margin:0 0 12px;font-size:1.35rem}.card h3{margin:16px 0 6px;font-size:1.05rem;color:#cbd8ff}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.mini{background:var(--panel2);padding:15px;border-radius:13px;border:1px solid var(--line)}.mini strong{display:block;margin-bottom:4px;color:#dce6ff}
+.callout{border-left:4px solid var(--accent2);background:#10283a;padding:13px 15px;border-radius:8px;margin:12px 0}.tag{display:inline-block;background:#26385d;color:#dce6ff;border-radius:6px;padding:2px 7px;font-size:.78rem;margin:2px}
+ul,ol{padding-left:22px}li{margin:4px 0}table{border-collapse:collapse;width:100%;margin:10px 0;font-size:.94rem}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:#202e4d}
+button.action{border:0;border-radius:10px;background:var(--accent);color:#071026;font-weight:800;padding:10px 14px;cursor:pointer;margin:5px 5px 5px 0}button.secondary{background:#263653;color:var(--text);border:1px solid var(--line)}
+input[type=text],select{background:#0d1528;border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--text);width:100%;margin:6px 0 12px}
+.progress{height:8px;background:#263653;border-radius:20px;overflow:hidden;margin:10px 0}.progress div{height:100%;width:0;background:var(--accent2);transition:width .2s}
+.question{padding:15px;border:1px solid var(--line);border-radius:13px;margin:12px 0;background:#10192d}.option{display:block;padding:8px;margin:5px 0;border-radius:8px;background:#1b2741;cursor:pointer}.option input{margin-right:8px}.answer{display:none;background:#102b27;border:1px solid #286d5c;border-radius:10px;padding:12px;margin-top:10px}.answer.show{display:block}
+.flash{min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(145deg,#1a2c50,#17233b);border:1px solid #40527b;border-radius:16px;padding:25px;cursor:pointer}.flash .hint{font-size:.8rem;color:var(--accent2);letter-spacing:1px;text-transform:uppercase}.flash .big{font-size:1.3rem;font-weight:750;margin:12px 0}.small{font-size:.88rem}.searchbar{margin:0 0 14px}.topic{padding:13px 0;border-bottom:1px solid var(--line)}.topic:last-child{border-bottom:0}.hidden{display:none!important}
+footer{text-align:center;color:var(--muted);padding:25px 15px;font-size:.85rem}
+@media(max-width:760px){.shell{grid-template-columns:1fr}nav{position:static;display:flex;overflow:auto;gap:4px}nav button{white-space:nowrap;width:auto}.grid{grid-template-columns:1fr}.card{padding:16px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="eyebrow">Exam Buddy • ISE • Unit 3</div>
+ <h1>Startup Ecosystem<br><span style="color:var(--accent2)">and Funding Models</span></h1>
+ <p>Learn in simple language, revise key definitions, practise exam-style questions, and test yourself. Content is organised from your uploaded Unit 3 notes.</p>
+ <div class="pills"><span class="pill">Study mode</span><span class="pill">2 & 4 mark answers</span><span class="pill">MCQ practice</span><span class="pill">Flashcards</span><span class="pill">Quick revision</span></div>
+</header>
+<div class="shell">
+<nav id="nav">
+ <button class="active" data-tab="home">🏠 Dashboard</button>
+ <button data-tab="learn">📘 Learn topics</button>
+ <button data-tab="revision">⚡ Quick revision</button>
+ <button data-tab="answers">✍️ Exam answers</button>
+ <button data-tab="quiz">🧠 MCQ practice</button>
+ <button data-tab="cards">🃏 Flashcards</button>
+</nav>
+<main>
+<section class="section active" id="home">
+ <div class="card"><h2>Welcome to your Unit 3 Exam Buddy</h2><p class="muted">Study in this order if you're starting from zero: ecosystem basics → funding sources → startup lifecycle → investor pitch → valuation → Indian initiatives.</p>
+ <div class="progress"><div id="homeProgress"></div></div><p class="small muted" id="progressText">Your progress: 0 of 6 sections opened.</p>
+ <button class="action" onclick="showTab('learn')">Start learning →</button> <button class="action secondary" onclick="showTab('quiz')">Try a quiz</button></div>
+ <div class="grid">
+  <div class="mini"><strong>1. Startup ecosystem</strong><span class="muted small">Stakeholders, incubators, accelerators, government, colleges and industry.</span></div>
+  <div class="mini"><strong>2. Funding models</strong><span class="muted small">Bootstrapping, friends & family, angels, VC, crowdfunding, loans and grants.</span></div>
+  <div class="mini"><strong>3. Pitching & valuation</strong><span class="muted small">Pitch deck structure and five startup valuation methods.</span></div>
+  <div class="mini"><strong>4. National initiatives</strong><span class="muted small">Startup India and Atal Innovation Mission (AIM).</span></div>
+ </div>
+ <div class="card"><h2>Unit map</h2><div class="callout"><b>Startup journey:</b> Idea generation → Idea validation → Prototype/MVP → Market testing → Product-market fit → Funding → Growth → Scaling.</div><p class="muted small">Note: This website reorganises the notes for study. Examples and figures are retained as presented in the supplied PDF; check time-sensitive scheme details with official sources if needed.</p></div>
+</section>
+
+<section class="section" id="learn">
+ <div class="card"><h2>📘 Learn topics</h2><input class="searchbar" type="text" id="topicSearch" placeholder="Search a topic (e.g. angel, MVP, valuation)…" oninput="filterTopics()">
+ <div id="topics">
+  <div class="topic"><h3>1. Startup ecosystem — definition</h3><p>A <b>startup ecosystem</b> is a network of individuals, organisations, institutions, resources and support systems that help startups emerge, develop, grow and become successful businesses.</p><div class="callout"><b>Remember:</b> Entrepreneurs + Investors + Support Organisations + Government + Education + Market + Infrastructure.</div><p>It matters because it encourages entrepreneurship, provides funding and mentorship, supports innovation, creates jobs, provides market access, reduces common startup mistakes and contributes to economic development.</p></div>
+  <div class="topic"><h3>2. Major ecosystem components</h3><ul><li><b>Entrepreneurs:</b> identify problems, develop solutions, build products, take risks and manage the startup.</li><li><b>Investors:</b> provide capital; examples include angels, VC firms, banks, corporate investors and government funding agencies.</li><li><b>Incubators:</b> help early-stage ideas with workspace, infrastructure, mentoring, training, networking and technical support.</li><li><b>Accelerators:</b> help existing startups grow rapidly through intensive mentoring, investor connections, market access and pitch preparation.</li><li><b>Government:</b> can provide policies, tax benefits, grants, subsidies, loans, infrastructure and IP support.</li><li><b>Educational institutions:</b> offer labs, incubation, faculty mentorship, research facilities, hackathons and startup competitions.</li><li><b>Industry:</b> provides real-world problems, technical expertise, investment, pilot projects and customer opportunities.</li><li><b>Mentors:</b> guide strategy, product, marketing, finance, team building, legal matters, fundraising and scaling.</li><li><b>Customers:</b> validate ideas, test products, provide feedback and generate revenue.</li><li><b>Skilled employees and service providers:</b> bring engineering, sales, finance, design, legal, accounting, HR and other expertise.</li></ul></div>
+  <div class="topic"><h3>3. Incubator vs Accelerator</h3><table><tr><th>Aspect</th><th>Incubator</th><th>Accelerator</th></tr><tr><td>Stage</td><td>Idea / pre-product</td><td>MVP / early traction</td></tr><tr><td>Duration</td><td>Often longer or open-ended</td><td>Fixed-term cohort; notes mention typically 3–6 months</td></tr><tr><td>Focus</td><td>Development, validation and nurturing</td><td>Rapid scaling and growth</td></tr><tr><td>Support</td><td>Workspace, mentoring, legal/admin support</td><td>Intensive mentoring, possible seed capital, demo day</td></tr><tr><td>Equity</td><td>Usually none</td><td>Often 5–10%, according to the notes</td></tr><tr><td>Examples in notes</td><td>Atal Incubation Centres, CIIE.CO</td><td>GSF Accelerator, Axilor Ventures</td></tr></table></div>
+  <div class="topic"><h3>4. Startup funding models</h3><ul><li><b>Bootstrapping:</b> personal savings, family contributions or business revenue. Advantages: ownership and control retained, no dilution and financial discipline. Limitations: limited runway, slower growth and personal financial risk. Notes give Zoho and Zerodha as examples.</li><li><b>Friends and family:</b> early funds from relatives or friends.</li><li><b>Angel investors:</b> individuals investing personal capital, often for equity or convertible instruments; may add mentorship and contacts. Notes mention Ratan Tata and Kunal Shah as examples.</li><li><b>Venture capital (VC):</b> professionally managed funds invest in high-growth startups for equity; may expect significant returns and board participation. Notes mention Peak XV Partners, Tiger Global and Accel.</li><li><b>Crowdfunding:</b> many people contribute smaller amounts, usually online. Reward-based = product/perk; equity-based = shares; donation-based = no financial return expected.</li><li><b>Bank loans:</b> borrowed funds with eligibility and repayment requirements.</li><li><b>Government grants and schemes:</b> financial support for eligible startups and innovators.</li></ul><div class="callout"><b>Funding match:</b> Early idea → own savings / friends & family / suitable angel support. Proven traction and a scalable model → may be more suitable for VC. The best source depends on stage, need, risk and terms.</div></div>
+  <div class="topic"><h3>5. Startup lifecycle</h3><ol><li><b>Idea generation:</b> identify a problem, customer need or market opportunity.</li><li><b>Idea validation:</b> check if the problem is real and customers want the solution.</li><li><b>Prototype / MVP:</b> build a Minimum Viable Product with essential features.</li><li><b>Market testing:</b> test with real users and collect feedback.</li><li><b>Product-market fit:</b> the product satisfies a genuine market requirement.</li><li><b>Funding:</b> obtain funds to develop and expand.</li><li><b>Growth:</b> increase customers, revenue, employees, production and market presence.</li><li><b>Scaling:</b> expand to new cities, states, international markets or customer segments.</li></ol></div>
+  <div class="topic"><h3>6. Investor pitching essentials</h3><p>A pitch should explain in minutes that a real problem exists, the solution is credible and the team can execute. The notes describe a standard pitch deck of about 10–12 slides and list these core sections:</p><ol><li>Problem — pain point and who experiences it.</li><li>Solution — how the product addresses it uniquely.</li><li>Market size — TAM, SAM and SOM.</li><li>Business model — revenue streams and unit economics.</li><li>Traction — users, revenue growth, retention and partnerships.</li><li>Team — relevant experience and ability to execute.</li><li>Competition — alternatives and differentiation.</li><li>Financials & the ask — funding required, use of funds and projected milestones.</li></ol><p><b>Golden rules:</b> tell a clear story, quantify claims with real data, anticipate investor objections and rehearse.</p></div>
+  <div class="topic"><h3>7. Startup valuation methods</h3><ul><li><b>Berkus Method:</b> assigns value to qualitative factors such as idea, prototype, management team, strategic relationships and product rollout/sales; useful for pre-revenue startups.</li><li><b>Cost-to-Duplicate:</b> estimates the cost of rebuilding tangible assets and technology; may undervalue brand and network effects.</li><li><b>Market Multiple:</b> compares revenue/users with similar recently funded or acquired companies.</li><li><b>Discounted Cash Flow (DCF):</b> forecasts future free cash flows and discounts them to present value; more suitable when revenue is predictable.</li><li><b>Venture Capital Method:</b> works backward from expected future exit value to estimate the investor stake needed today.</li></ul></div>
+  <div class="topic"><h3>8. National initiatives in India</h3><p><b>Startup India:</b> launched 16 January 2016; administered by DPIIT under the Ministry of Commerce and Industry. The notes list startup recognition, funding support, mentorship, networking, IP support and ease of doing business. They also describe conditional tax benefits, self-certification, fast-track patent examination, the Startup India Seed Fund Scheme and Fund of Funds for Startups.</p><p><b>Atal Innovation Mission (AIM):</b> launched by NITI Aayog to promote innovation from school to startup level. Atal Tinkering Labs support hands-on innovation in schools; Atal Incubation Centres support and mentor startups, including in emerging sectors.</p></div>
+  <div class="topic"><h3>9. Activities from the notes</h3><ul><li><b>Ecosystem role play:</b> students act as founder, angel investor, VC associate, incubator manager or government policy officer.</li><li><b>Funding matching game:</b> match startup scenarios to suitable funding sources.</li><li><b>60-second pitch challenge:</b> explain problem, solution and ask clearly within one minute.</li></ul></div>
+ </div></div>
+</section>
+
+<section class="section" id="revision">
+ <div class="card"><h2>⚡ Quick revision sheet</h2>
+ <div class="grid">
+ <div class="mini"><strong>Startup ecosystem</strong>Network of people, institutions, capital and support systems that help startups grow.</div>
+ <div class="mini"><strong>MVP</strong>Minimum Viable Product: a version with essential features for testing with users.</div>
+ <div class="mini"><strong>Angel investor</strong>An individual investing personal money in a startup, often at an early stage.</div>
+ <div class="mini"><strong>Venture capital</strong>Professionally managed investment funds backing high-growth startups, usually for equity.</div>
+ <div class="mini"><strong>Crowdfunding</strong>Collecting small contributions from many people; reward, equity or donation based.</div>
+ <div class="mini"><strong>Product-market fit</strong>When the product satisfies a genuine market requirement.</div>
+ <div class="mini"><strong>TAM / SAM / SOM</strong>Total Addressable Market / Serviceable Addressable Market / Serviceable Obtainable Market.</div>
+ <div class="mini"><strong>DCF</strong>Estimates present value by discounting forecast future free cash flows.</div>
+ </div>
+ <h3>Funding types in one line</h3><p>Bootstrapping = self-funding • Friends/family = personal network • Angel = individual investor • VC = pooled professional fund • Crowdfunding = many contributors • Loan = repayable borrowing • Grant = support subject to scheme rules.</p>
+ <h3>Startup lifecycle mnemonic</h3><p class="callout">Idea → Validate → MVP → Test → Fit → Fund → Grow → Scale</p>
+ <h3>Pitch deck checklist</h3><p>Problem • Solution • Market size • Business model • Traction • Team • Competition • Financials & ask.</p>
+ </div>
+</section>
+
+<section class="section" id="answers">
+ <div class="card"><h2>✍️ Exam-ready answers</h2><p class="muted">Use the answer length that matches the marks. Answers are based on the uploaded notes and phrased for revision.</p>
+ <h3>2 marks: Define startup ecosystem.</h3><p>A startup ecosystem is a network of individuals, organisations, institutions, resources and support systems that help startups emerge, develop, grow and become successful businesses. It includes entrepreneurs, investors, support organisations, government, education, markets and infrastructure.</p>
+ <h3>2 marks: What is bootstrapping?</h3><p>Bootstrapping is funding a startup through the founder’s personal savings, family contributions or early business revenue without relying on external investors. It helps retain ownership but may limit the speed of growth.</p>
+ <h3>2 marks: Define MVP.</h3><p>A Minimum Viable Product (MVP) is a product version containing essential features. It is used to test the idea with actual users and collect feedback.</p>
+ <h3>2 marks: What is crowdfunding?</h3><p>Crowdfunding is raising small amounts of money from a large number of people, generally through online platforms. It may be reward-based, equity-based or donation-based.</p>
+ <h3>4 marks: Explain the importance of a startup ecosystem.</h3><p>A startup ecosystem helps new businesses emerge and grow. Its importance includes:</p><ol><li>Encourages entrepreneurship, innovation and creativity.</li><li>Provides funding through angels, VC, loans, crowdfunding and schemes.</li><li>Offers mentorship, training, networking and business guidance.</li><li>Connects startups with customers, industries, suppliers and distributors.</li><li>Creates employment and contributes to economic development.</li><li>Reduces common mistakes through support and access to expertise.</li></ol>
+ <h3>4 marks: Differentiate between incubator and accelerator.</h3><table><tr><th>Incubator</th><th>Accelerator</th></tr><tr><td>Supports early-stage ideas or pre-product startups.</td><td>Supports startups with an MVP or early traction.</td></tr><tr><td>Usually longer-term or open-ended.</td><td>Usually fixed-term and intensive.</td></tr><tr><td>Focuses on validation, development and nurturing.</td><td>Focuses on rapid growth and scaling.</td></tr><tr><td>May provide workspace and basic business support.</td><td>May provide investor access, pitch preparation and demo day.</td></tr></table>
+ <h3>4 marks: Explain any four startup funding sources.</h3><ol><li><b>Bootstrapping:</b> founder uses savings or business revenue; retains control but has limited capital.</li><li><b>Angel investors:</b> individuals invest personal money and may provide mentorship and contacts.</li><li><b>Venture capital:</b> professional funds invest in high-growth startups in exchange for equity.</li><li><b>Crowdfunding:</b> many people contribute small amounts online through reward, equity or donation models.</li><li><b>Bank loans:</b> borrowed funds must be repaid according to agreed conditions.</li><li><b>Government grants:</b> eligible startups may receive support through specific schemes.</li></ol>
+ <h3>4 marks: Explain the startup lifecycle.</h3><p>The startup lifecycle consists of eight stages: (1) Idea generation, where a problem or opportunity is identified; (2) idea validation, where customer need is checked; (3) prototype/MVP development; (4) market testing with real users; (5) product-market fit; (6) funding; (7) growth in customers, revenue and team; and (8) scaling into new markets or customer segments.</p>
+ <h3>4 marks: Write the key elements of an investor pitch.</h3><p>An investor pitch communicates the problem, solution and ability to execute. Its key elements are: problem, solution, market size (TAM/SAM/SOM), business model, traction, team, competition, and financial requirements/use of funds. A strong pitch should use real data, tell a clear story, anticipate objections and be rehearsed.</p>
+ <h3>4 marks: Explain startup valuation methods.</h3><ol><li><b>Berkus:</b> values qualitative factors such as idea, prototype and team.</li><li><b>Cost-to-Duplicate:</b> estimates cost of recreating assets and technology.</li><li><b>Market Multiple:</b> compares the startup with similar companies using metrics such as revenue or users.</li><li><b>DCF:</b> discounts expected future cash flows to present value.</li><li><b>VC Method:</b> estimates today's investor stake from a future exit value and target return.</li></ol>
+ <h3>4 marks: Describe Startup India and AIM.</h3><p><b>Startup India</b> promotes entrepreneurship through recognition, funding support, mentorship, networking, intellectual property support and ease of doing business. The notes mention the Seed Fund Scheme and Fund of Funds for Startups. <b>Atal Innovation Mission (AIM)</b>, launched by NITI Aayog, promotes innovation through Atal Tinkering Labs in schools and Atal Incubation Centres that support startup development.</p>
+ </div>
+</section>
+
+<section class="section" id="quiz">
+ <div class="card"><h2>🧠 MCQ practice</h2><p class="muted">Choose one answer for each question, then check your score.</p><div id="quizBox"></div><button class="action" onclick="checkQuiz()">Check answers</button><button class="action secondary" onclick="resetQuiz()">Try again</button><div id="quizResult" class="callout hidden"></div></div>
+</section>
+
+<section class="section" id="cards">
+ <div class="card"><h2>🃏 Flashcards</h2><p class="muted">Tap the card to reveal the answer. Use Next to keep revising.</p><div class="flash" id="flash" onclick="flipCard()"><div class="hint" id="flashHint">Question</div><div class="big" id="flashText">What is a startup ecosystem?</div><div class="small muted">Tap to flip</div></div><p style="text-align:center"><button class="action secondary" onclick="prevCard()">← Previous</button><button class="action" onclick="nextCard()">Next →</button></p><p class="muted small" id="flashCount" style="text-align:center"></p></div>
+</section>
+</main></div>
+<footer>ISE Unit 3 Exam Buddy • Made for learning and revision • Source: uploaded “ISE--UNIT-3 NOTES.pdf”</footer>
+<script>
+const tabs=[...document.querySelectorAll('.section')], navButtons=[...document.querySelectorAll('nav button')];let opened=new Set(['home']);
+function showTab(id){tabs.forEach(s=>s.classList.toggle('active',s.id===id));navButtons.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));opened.add(id);document.getElementById('homeProgress').style.width=(opened.size/6*100)+'%';document.getElementById('progressText').textContent='Your progress: '+opened.size+' of 6 sections opened.';window.scrollTo({top:0,behavior:'smooth'})}
+navButtons.forEach(b=>b.addEventListener('click',()=>showTab(b.dataset.tab)));
+function filterTopics(){let q=document.getElementById('topicSearch').value.toLowerCase();document.querySelectorAll('#topics .topic').forEach(t=>t.classList.toggle('hidden',!t.innerText.toLowerCase().includes(q)))}
+const questions=[
+{q:'Which statement best describes a startup ecosystem?',o:['Only a startup’s employees','A network of people, organisations and support systems','Only government offices','Only investors'],a:1,e:'It includes entrepreneurs, investors, support organisations, government, education, market and infrastructure.'},
+{q:'Which support is most associated with an incubator?',o:['Only stock-market listing','Early-stage guidance, workspace and mentoring','Only international expansion','Mandatory bank loans'],a:1,e:'Incubators nurture early-stage ideas and may provide workspace, infrastructure and mentoring.'},
+{q:'Which funding source uses the founder’s own savings or revenue?',o:['Venture capital','Crowdfunding','Bootstrapping','Bank loan'],a:2,e:'Bootstrapping uses personal savings, family contributions or early business revenue.'},
+{q:'An angel investor typically invests:',o:['Only government tax','Personal money in startups','Only customer reward points','Only bank deposits'],a:1,e:'Angel investors are individuals who invest their personal capital.'},
+{q:'What does MVP stand for?',o:['Maximum Venture Plan','Minimum Viable Product','Market Value Price','Managed Venture Portfolio'],a:1,e:'An MVP contains essential features and is tested with users.'},
+{q:'Which crowdfunding type gives backers a product or perk?',o:['Donation-based','Reward-based','Debt-free VC','Tax-based'],a:1,e:'Reward-based crowdfunding provides a product or perk.'},
+{q:'Which stage involves testing a product with actual users?',o:['Market testing','Scaling','Idea generation only','Exit'],a:0,e:'The MVP is tested with actual users and feedback is collected.'},
+{q:'Which pitch element explains revenue streams and unit economics?',o:['Competition','Team','Business model','Problem'],a:2,e:'The business model explains how the startup earns money.'},
+{q:'Which valuation method discounts forecast future cash flows?',o:['Berkus Method','DCF','Cost-to-Duplicate','Market map'],a:1,e:'Discounted Cash Flow estimates present value from future free cash flows.'},
+{q:'Atal Tinkering Labs are associated with:',o:['Atal Innovation Mission','Crowdfunding','Angel networks','Private VC only'],a:0,e:'AIM promotes innovation; ATLs help school students explore hands-on innovation.'},
+{q:'Which source usually expects repayment?',o:['Bank loan','Donation-based crowdfunding','Gift','Grant in every case'],a:0,e:'A loan has repayment requirements.'},
+{q:'TAM, SAM and SOM are used in a pitch to describe:',o:['Market size','Team structure','Legal contracts','Prototype materials'],a:0,e:'They represent Total Addressable, Serviceable Addressable and Serviceable Obtainable Market.'}
+];
+function renderQuiz(){document.getElementById('quizBox').innerHTML=questions.map((q,i)=>`<div class="question"><b>${i+1}. ${q.q}</b>${q.o.map((o,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}">${o}</label>`).join('')}<div class="answer" id="exp${i}">${q.e}</div></div>`).join('');document.getElementById('quizResult').classList.add('hidden')}
+function checkQuiz(){let score=0,answered=0;questions.forEach((q,i)=>{let sel=document.querySelector(`input[name="q${i}"]:checked`);let exp=document.getElementById('exp'+i);exp.classList.add('show');if(sel){answered++;if(+sel.value===q.a)score++}});let r=document.getElementById('quizResult');r.classList.remove('hidden');r.innerHTML=`<b>Your score: ${score}/${questions.length}</b><br>Answered: ${answered}/${questions.length}. Review the explanations under each question, then try again.`;r.scrollIntoView({behavior:'smooth',block:'center'})}
+function resetQuiz(){renderQuiz();document.getElementById('quizBox').scrollIntoView({behavior:'smooth',block:'start'})}renderQuiz();
+const flashcards=[
+['What is a startup ecosystem?','A network of people, organisations, institutions, resources and support systems that help startups grow.'],
+['What is bootstrapping?','Funding a venture with personal savings, family contributions or early revenue.'],
+['Who is an angel investor?','An individual who invests personal capital in a startup, often in exchange for equity or convertible instruments.'],
+['What is venture capital?','Professionally managed pooled funds invested in high-growth startups, typically in exchange for equity.'],
+['What is crowdfunding?','Raising small amounts from many people, usually online. Types: reward, equity and donation.'],
+['What is an MVP?','A Minimum Viable Product with essential features, created to test with users.'],
+['What is product-market fit?','When the product satisfies a genuine market requirement.'],
+['Name five valuation methods from the notes.','Berkus, Cost-to-Duplicate, Market Multiple, Discounted Cash Flow (DCF), and Venture Capital Method.'],
+['What is the purpose of an investor pitch?','To show that a real problem exists, the solution is credible and the team can execute.'],
+['What does AIM stand for?','Atal Innovation Mission, launched by NITI Aayog to promote innovation and entrepreneurship.'],
+['What is the role of an incubator?','To nurture early-stage ideas with support such as workspace, mentoring, training and infrastructure.'],
+['What is the role of an accelerator?','To help existing startups grow rapidly through intensive mentoring, investor links and pitch preparation.']
+];let fi=0,flipped=false;
+function drawCard(){document.getElementById('flashHint').textContent=flipped?'Answer':'Question';document.getElementById('flashText').textContent=flashcards[fi][flipped?1:0];document.getElementById('flashCount').textContent=`Card ${fi+1} of ${flashcards.length}`;document.getElementById('flash').style.borderColor=flipped?'#56e0c2':'#40527b'}
+function flipCard(){flipped=!flipped;drawCard()}function nextCard(){fi=(fi+1)%flashcards.length;flipped=false;drawCard()}function prevCard(){fi=(fi-1+flashcards.length)%flashcards.length;flipped=false;drawCard()}drawCard();
+</script>
+</body></html>

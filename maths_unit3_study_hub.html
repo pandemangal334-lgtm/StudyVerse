@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maths Unit 3 — Study Hub</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#65718a;--line:#e4e9f2;--blue:#3157d5;--blue2:#eaf0ff;--green:#16794b;--red:#b42318;--yellow:#fff6d8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{background:linear-gradient(125deg,#172554,#3157d5);color:white;padding:28px 18px 24px}
+.wrap{max-width:1050px;margin:auto}header h1{margin:0;font-size:clamp(25px,5vw,38px);line-height:1.15}header p{margin:10px 0 0;color:#e0e7ff;max-width:720px}
+.pill{display:inline-block;border:1px solid #ffffff55;border-radius:99px;padding:4px 10px;font-size:12px;margin-bottom:12px}
+nav{display:flex;gap:8px;overflow:auto;padding:12px 14px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+nav button{white-space:nowrap;border:0;background:#f0f3fa;color:#34415c;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+nav button.active{background:var(--blue);color:#fff}
+main{max-width:1050px;margin:20px auto;padding:0 14px 40px}
+section{display:none}section.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 4px 18px #1e2a4410;margin-bottom:14px}
+.card h2,.card h3{margin:0 0 8px;line-height:1.3}.muted{color:var(--muted)}.small{font-size:13px}
+.big{font-size:24px;font-weight:800;color:var(--blue)}.formula{background:#f0f4ff;border:1px solid #dce5ff;border-radius:10px;padding:12px 14px;font-weight:700;overflow-wrap:anywhere;margin:10px 0}
+button,.btn{cursor:pointer} .primary{background:var(--blue);color:white;border:0;border-radius:10px;padding:10px 14px;font-weight:750}.secondary{background:#eef2ff;color:#263f9c;border:0;border-radius:10px;padding:10px 14px;font-weight:700}
+details{border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin:10px 0;background:white}summary{cursor:pointer;font-weight:750}
+li{margin:5px 0}.answer{background:#eefaf3;border-left:4px solid #24945d;padding:10px 12px;border-radius:7px;margin-top:10px}
+.warn{background:var(--yellow);padding:12px;border-radius:10px;border:1px solid #f1df9e}
+label{display:block;margin:9px 0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer}label:hover{background:#f6f8ff}
+input[type=radio]{margin-right:8px} .result{font-weight:800;margin-top:12px}.flash{min-height:205px;display:flex;flex-direction:column;justify-content:center;text-align:center;cursor:pointer}.flash .front{font-size:23px;font-weight:800}.flash .back{font-size:18px}.progress{height:8px;background:#e3e8f3;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:var(--blue);width:0}
+input[type=text],textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px;font:inherit}
+footer{text-align:center;color:var(--muted);padding:18px}
+@media(max-width:560px){nav button{padding:9px 11px}.card{padding:15px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="pill">UNIT 3 • EXAM CRASH HUB</div>
+<h1>Maths Unit 3 — Study Hub</h1>
+<p>Bhai, sab ek jagah: simple Hinglish teaching, short revision notes, 2-mark answers, 4-mark answers, flashcards aur practice quiz. PDF ke visible topics ko follow kiya hai.</p>
+</div></header>
+<nav id="nav">
+<button class="active" data-tab="home">Start here</button><button data-tab="teach">Teach me</button><button data-tab="notes">Short notes</button><button data-tab="two">2-mark Q&A</button><button data-tab="four">4-mark Q&A</button><button data-tab="cards">Flashcards</button><button data-tab="quiz">Practice quiz</button>
+</nav>
+<main>
+<section id="home" class="active">
+<div class="grid">
+<div class="card"><div class="big">01</div><h3>Learn first</h3><p class="muted">Topic ko easy Hinglish mein samjho, phir worked example dekho.</p><button class="primary" onclick="tab('teach')">Start learning</button></div>
+<div class="card"><div class="big">02</div><h3>Revise fast</h3><p class="muted">Exam se pehle formulas aur definitions ek jagah.</p><button class="secondary" onclick="tab('notes')">Open revision notes</button></div>
+<div class="card"><div class="big">03</div><h3>Test yourself</h3><p class="muted">Flashcards ya MCQ practice se check karo kya yaad hai.</p><button class="secondary" onclick="tab('quiz')">Start quiz</button></div>
+</div>
+<div class="card"><h2>Recommended order</h2><ol><li>Random variable, PMF/PDF</li><li>Expectation and variance</li><li>Moments and MGF</li><li>Joint distribution and E(XY)</li><li>Covariance and correlation</li><li>Flashcards + quiz + 2/4-mark answers</li></ol></div>
+<div class="warn"><b>PDF note:</b> Uploaded PDF ka text extraction readable nahi tha (scan/images). Is hub mein wahi topics aur examples use kiye hain jo notes ke readable review se confirm hue. Joint continuous-density example ki handwritten limits/results unclear hain, isliye uska answer invent nahi kiya.</div>
+</section>
+<section id="teach">
+<div class="card"><h2>1. Random variable, PMF aur PDF</h2><p><b>Simple samjho:</b> Random experiment ke result ko number dene wala variable random variable kehlata hai. Jaise 2 coins toss kiye aur X = heads ki count, toh X ki values 0, 1, 2 ho sakti hain.</p><p><b>Discrete:</b> Countable values (0, 1, 2...). <b>Continuous:</b> Range mein koi bhi value ho sakti hai.</p><p><b>PMF:</b> Discrete variable ki har value ki probability. <b>PDF:</b> Continuous variable ke liye density function; probability interval ke area/integral se milti hai.</p></div>
+<div class="card"><h2>2. Expectation — average ka probability version</h2><p>Har value ko uski probability se multiply karo, phir sab add karo.</p><div class="formula">E(X) = Σ x·p(x)</div><p><b>PDF example: 2 coins</b> X = number of heads; P(X=0)=1/4, P(X=1)=1/2, P(X=2)=1/4.</p><div class="formula">E(X) = 0(1/4) + 1(1/2) + 2(1/4) = 1</div><p>Matlab long-run average heads per two-coin experiment = 1.</p><p>Continuous case mein PDF ke according expectation integral se calculate hoti hai.</p></div>
+<div class="card"><h2>3. Variance aur standard deviation</h2><p>Expectation average batata hai; variance batata hai values average se kitni spread hain.</p><div class="formula">Var(X) = E(X²) − [E(X)]²</div><div class="formula">SD(X) = √Var(X)</div><p><b>PDF example:</b> X values 0, 1, 2, 3 aur probabilities 1/3, 1/2, 0, 1/6. Notes ke result: E(X)=1, E(X²)=2.</p><div class="formula">Var(X)=2−1²=1; SD=√1=1</div></div>
+<div class="card"><h2>4. Moments aur MGF</h2><p><b>r-th raw moment:</b> origin ke about moment.</p><div class="formula">μ′ᵣ = E(Xʳ)</div><p><b>Moment generating function (MGF):</b></p><div class="formula">Mₓ(t) = E(eᵗˣ)</div><p><b>PDF example:</b> X = +1 or −1, each with probability 1/2.</p><div class="formula">Mₓ(t) = (eᵗ + e⁻ᵗ)/2 = cosh(t)</div><p>Is example mein raw moments: μ′₁=0, μ′₂=1, μ′₃=0, μ′₄=1.</p><p><b>PDF exponential example:</b> f(x)=e⁻ˣ for x≥0; MGF = 1/(1−t), and first four raw moments = 1, 2, 6, 24 (where the MGF exists).</p></div>
+<div class="card"><h2>5. Joint expectation, covariance, correlation</h2><p>Jab X aur Y dono variables saath diye ho, joint distribution table use hota hai.</p><div class="formula">E(XY) = ΣΣ xy·p(x,y)</div><p>Har (x,y) pair ke liye x×y karo, us joint probability se multiply karo, phir sab add karo.</p><div class="formula">Cov(X,Y) = E(XY) − E(X)E(Y)</div><p>Covariance X aur Y saath kaise change karte hain, ye measure karta hai.</p><div class="formula">Corr(X,Y) = Cov(X,Y) / (σₓσᵧ)</div><p>Correlation covariance ko dono standard deviations se scale karta hai.</p><p class="muted">PDF ke continuous joint example ki handwritten density/limits readable nahi hain, isliye exact numerical answer yahan add nahi kiya.</p></div>
+</section>
+<section id="notes">
+<div class="card"><h2>Last-minute short revision</h2>
+<ul>
+<li><b>Random variable:</b> Random experiment ke outcomes ko numerical values assign karta hai.</li>
+<li><b>PMF:</b> Discrete random variable ki probability function.</li>
+<li><b>PDF:</b> Continuous random variable ki density; interval probability area/integral se.</li>
+<li><b>Expectation:</b> E(X)=Σxp(x); continuous case mein integral form.</li>
+<li><b>Variance:</b> Var(X)=E(X²)−[E(X)]².</li>
+<li><b>Standard deviation:</b> SD=√Var(X).</li>
+<li><b>Raw moment:</b> μ′ᵣ=E(Xʳ).</li>
+<li><b>MGF:</b> Mₓ(t)=E(eᵗˣ).</li>
+<li><b>Joint product expectation:</b> E(XY)=ΣΣxy·p(x,y).</li>
+<li><b>Covariance:</b> Cov(X,Y)=E(XY)−E(X)E(Y).</li>
+<li><b>Correlation:</b> Corr(X,Y)=Cov(X,Y)/(σₓσᵧ).</li>
+</ul></div>
+<div class="card"><h3>Remember these PDF examples</h3>
+<p><b>Two coins:</b> X = heads count; probabilities 1/4, 1/2, 1/4; E(X)=1.</p>
+<p><b>Discrete variance example:</b> X=(0,1,2,3), P=(1/3,1/2,0,1/6); E(X)=1, E(X²)=2, Var=1, SD=1.</p>
+<p><b>X=±1 equally likely:</b> MGF=cosh(t); raw moments 0,1,0,1.</p>
+<p><b>Exponential PDF example:</b> f(x)=e⁻ˣ, x≥0; MGF=1/(1−t); raw moments 1,2,6,24.</p></div>
+</section>
+<section id="two">
+<div class="card"><h2>Important 2-mark questions with answers</h2>
+<details><summary>1. Define random variable.</summary><div class="answer">A random variable is a function that assigns a numerical value to each outcome of a random experiment.</div></details>
+<details><summary>2. What is PMF?</summary><div class="answer">Probability Mass Function gives the probability of each possible value of a discrete random variable.</div></details>
+<details><summary>3. Define mathematical expectation.</summary><div class="answer">For a discrete random variable, E(X)=Σxp(x), where x is a possible value and p(x) is its probability.</div></details>
+<details><summary>4. Define variance.</summary><div class="answer">Variance measures spread around the mean and is calculated as Var(X)=E(X²)−[E(X)]².</div></details>
+<details><summary>5. What is an r-th raw moment?</summary><div class="answer">The r-th raw moment about origin is μ′ᵣ=E(Xʳ).</div></details>
+<details><summary>6. Define MGF.</summary><div class="answer">The moment generating function is Mₓ(t)=E(eᵗˣ).</div></details>
+<details><summary>7. Define covariance.</summary><div class="answer">Covariance measures how two random variables vary together: Cov(X,Y)=E(XY)−E(X)E(Y).</div></details>
+<details><summary>8. Define correlation coefficient.</summary><div class="answer">Correlation is standardized covariance: Corr(X,Y)=Cov(X,Y)/(σₓσᵧ).</div></details>
+</div>
+</section>
+<section id="four">
+<div class="card"><h2>Important 4-mark answers</h2>
+<details><summary>1. Find expectation for the two-coin example.</summary><p>Let X be the number of heads when two coins are tossed.</p><p>P(X=0)=1/4, P(X=1)=1/2, P(X=2)=1/4.</p><div class="formula">E(X)=Σxp(x)</div><p>E(X)=0(1/4)+1(1/2)+2(1/4)=0+1/2+1/2=1.</p><div class="answer">Therefore, E(X)=1.</div></details>
+<details><summary>2. Find variance and SD for the PDF's discrete example.</summary><p>Given X=(0,1,2,3), P(X)=(1/3,1/2,0,1/6). From the PDF example, E(X)=1 and E(X²)=2.</p><div class="formula">Var(X)=E(X²)−[E(X)]²=2−1=1</div><div class="formula">SD(X)=√Var(X)=√1=1</div><div class="answer">Variance = 1 and standard deviation = 1.</div></details>
+<details><summary>3. Find MGF for X=+1 and −1, each with probability 1/2.</summary><p>By definition, Mₓ(t)=E(eᵗˣ).</p><div class="formula">Mₓ(t)=eᵗ(1/2)+e⁻ᵗ(1/2)=(eᵗ+e⁻ᵗ)/2=cosh(t)</div><div class="answer">Hence MGF = cosh(t).</div></details>
+<details><summary>4. Explain joint expectation and covariance.</summary><p>For a discrete joint distribution, multiply x and y for each pair and weight it by its joint probability:</p><div class="formula">E(XY)=ΣΣxy·p(x,y)</div><p>Then calculate individual expectations E(X), E(Y). Use:</p><div class="formula">Cov(X,Y)=E(XY)−E(X)E(Y)</div><p>Show the joint table calculations clearly and substitute the final values.</p></details>
+<details><summary>5. Explain correlation coefficient.</summary><p>Correlation expresses the standardized relationship between two random variables. First calculate covariance, then divide it by the product of the standard deviations.</p><div class="formula">Corr(X,Y)=Cov(X,Y)/(σₓσᵧ)</div><p>In an exam answer, define the symbols and show the substitution step.</p></details>
+<div class="warn">PDF ke kuch handwritten joint continuous example values clearly readable nahi hain. Exact numerical answer ke liye us question ka clear screenshot/photo chahiye.</div>
+</div>
+</section>
+<section id="cards">
+<div class="card"><h2>Flashcards</h2><p class="muted">Card par tap karo to answer reveal hoga. Next/Previous se chapter revise karo.</p><div class="progress"><span id="bar"></span></div><div class="card flash" id="flash" onclick="flipCard()"><div class="small muted" id="fcCount">Card 1</div><div class="front" id="fcFront">Expectation formula?</div><div class="back" id="fcBack" style="display:none">E(X)=Σxp(x)</div><div class="small muted" style="margin-top:14px">Tap to flip</div></div><div style="display:flex;gap:8px;justify-content:center"><button class="secondary" onclick="moveCard(-1)">← Previous</button><button class="primary" onclick="moveCard(1)">Next →</button></div></div>
+</section>
+<section id="quiz">
+<div class="card"><h2>Practice quiz</h2><p class="muted">Answers select karo, phir Check answers dabao.</p><form id="quizForm"></form><button class="primary" onclick="checkQuiz()" type="button">Check answers</button><div id="quizResult" class="result"></div></div>
+</section>
+</main>
+<footer>Maths Unit 3 Study Hub • PDF-focused revision • Hinglish learning</footer>
+<script>
+function tab(id){document.querySelectorAll('section').forEach(s=>s.classList.toggle('active',s.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>tab(b.dataset.tab)));
+const cards=[
+["Random variable kya hai?","Random experiment ke outcomes ko numerical values assign karta hai."],
+["PMF ka full form aur use?","Probability Mass Function; discrete X ki har value ki probability batata hai."],
+["Expectation formula?","E(X)=Σxp(x)"],
+["Variance formula?","Var(X)=E(X²)−[E(X)]²"],
+["Standard deviation?","SD=√Var(X)"],
+["r-th raw moment?","μ′ᵣ=E(Xʳ)"],
+["MGF formula?","Mₓ(t)=E(eᵗˣ)"],
+["Two-coin example ka E(X)?","1"],
+["PDF discrete example ka variance aur SD?","Variance=1, SD=1"],
+["X=±1 equally likely: MGF?","cosh(t)"],
+["Joint expectation E(XY)?","ΣΣxy·p(x,y)"],
+["Covariance formula?","Cov(X,Y)=E(XY)−E(X)E(Y)"],
+["Correlation formula?","Corr(X,Y)=Cov(X,Y)/(σₓσᵧ)"],
+["Exponential example ka MGF?","1/(1−t)"]
+];let ci=0,flipped=false;
+function showCard(){document.getElementById('fcCount').textContent=`Card ${ci+1} of ${cards.length}`;document.getElementById('fcFront').textContent=cards[ci][0];document.getElementById('fcBack').textContent=cards[ci][1];document.getElementById('fcFront').style.display='block';document.getElementById('fcBack').style.display='none';flipped=false;document.getElementById('bar').style.width=((ci+1)/cards.length*100)+'%'}
+function flipCard(){flipped=!flipped;document.getElementById('fcFront').style.display=flipped?'none':'block';document.getElementById('fcBack').style.display=flipped?'block':'none'}
+function moveCard(n){ci=(ci+n+cards.length)%cards.length;showCard()}showCard();
+const qs=[
+{q:"Two coins ke example mein E(X)=?",o:["0","1","2","1/2"],a:1,why:"PDF example: 0(1/4)+1(1/2)+2(1/4)=1."},
+{q:"Var(X) ka formula kaunsa hai?",o:["E(X²)−[E(X)]²","E(X)²−E(X²)","E(X²)+E(X)","√E(X²)"],a:0,why:"Variance = second raw moment minus square of mean."},
+{q:"PDF example mein E(X)=1 aur E(X²)=2. Variance?",o:["0","1","2","3"],a:1,why:"Var=2−1²=1."},
+{q:"Variance 1 ho toh standard deviation?",o:["0","1","2","√2"],a:1,why:"SD=√1=1."},
+{q:"r-th raw moment formula?",o:["E(Xʳ)","E(rX)","[E(X)]ʳ only","E(X+r)"],a:0,why:"Origin ke about r-th raw moment μ′ᵣ=E(Xʳ)."},
+{q:"MGF ki definition?",o:["E(eᵗˣ)","E(X²)","E(X)+t","Var(X)"],a:0,why:"Mₓ(t)=E(eᵗˣ)."},
+{q:"X=+1,−1 each probability 1/2. E(X)?",o:["−1","0","1","2"],a:1,why:"(+1)(1/2)+(−1)(1/2)=0."},
+{q:"X=+1,−1 each probability 1/2. E(X²)?",o:["0","1","−1","1/2"],a:1,why:"Dono outcomes ka square 1 hai, isliye expectation 1."},
+{q:"Covariance ka formula?",o:["E(XY)−E(X)E(Y)","E(X²)−E(X)²","E(X)+E(Y)","E(XY)+E(X)E(Y)"],a:0,why:"Covariance joint product expectation minus product of individual expectations hai."},
+{q:"Correlation ke denominator mein kya hota hai?",o:["σₓσᵧ","σₓ+σᵧ","Var(X)+Var(Y)","E(X)E(Y)"],a:0,why:"Covariance ko standardize karne ke liye dono standard deviations ka product use hota hai."}
+];
+const qf=document.getElementById('quizForm');qf.innerHTML=qs.map((q,i)=>`<div class="card"><b>Q${i+1}. ${q.q}</b>${q.o.map((x,j)=>`<label><input type="radio" name="q${i}" value="${j}">${String.fromCharCode(65+j)}. ${x}</label>`).join('')}<div id="why${i}" class="small muted"></div></div>`).join('');
+function checkQuiz(){let score=0;qs.forEach((q,i)=>{let v=document.querySelector(`input[name=q${i}]:checked`);let w=document.getElementById('why'+i);if(v&&+v.value===q.a){score++;w.innerHTML='✓ Sahi. '+q.why;w.style.color='var(--green)'}else{w.innerHTML='Correct answer: '+String.fromCharCode(65+q.a)+'. '+q.o[q.a]+'. '+q.why;w.style.color='var(--red)'}});document.getElementById('quizResult').textContent=`Score: ${score}/${qs.length} (${Math.round(score/qs.length*100)}%)`;document.getElementById('quizResult').scrollIntoView({behavior:'smooth',block:'center'})}
+</script>
+</body>
+</html>

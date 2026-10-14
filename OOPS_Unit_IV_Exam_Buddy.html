@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OOPS Unit IV | Exam Buddy</title>
+<style>
+:root{--bg:#0b1020;--panel:#131b30;--panel2:#19233c;--text:#edf2ff;--muted:#a9b6d3;--line:#293654;--accent:#8b9cff;--accent2:#64e6c2;--yellow:#ffd479;--red:#ff9eaa}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at top left,#172344 0%,var(--bg) 55%);color:var(--text);font:15px/1.6 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input{font:inherit}button{cursor:pointer}.layout{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}.sidebar{padding:25px 17px;border-right:1px solid var(--line);background:#0b1120;position:sticky;top:0;height:100vh;overflow:auto}.brand{font-weight:850;font-size:21px;letter-spacing:-.5px}.brand span{color:var(--accent2)}.tag{color:var(--muted);font-size:12px;margin:4px 0 24px}.nav{display:grid;gap:7px}.nav button{background:transparent;border:1px solid transparent;color:var(--muted);text-align:left;padding:10px 12px;border-radius:11px}.nav button:hover,.nav button.active{background:var(--panel2);color:var(--text);border-color:var(--line)}.side-note{margin-top:24px;border:1px solid var(--line);background:var(--panel);padding:13px;border-radius:14px;font-size:12px;color:var(--muted)}main{max-width:1180px;width:100%;padding:32px clamp(18px,4vw,55px) 70px;margin:auto}.topline{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:13px}.pill{border:1px solid var(--line);border-radius:999px;padding:5px 10px;background:#101a2d}.hero{padding:36px 0 25px}.eyebrow{color:var(--accent2);font-size:12px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase}h1{font-size:clamp(34px,5vw,60px);line-height:1.04;letter-spacing:-2px;margin:12px 0}h1 em{font-style:normal;color:var(--accent)}.lead{max-width:720px;color:var(--muted);font-size:17px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:11px;padding:10px 15px;font-weight:700}.btn.primary{background:var(--accent);color:#0b1020;border-color:var(--accent)}.btn:hover{filter:brightness(1.1)}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 32px}.stat,.card{background:linear-gradient(145deg,rgba(25,35,60,.95),rgba(17,25,44,.95));border:1px solid var(--line);border-radius:17px;padding:18px}.stat strong{font-size:25px;display:block}.stat small{color:var(--muted)}section{scroll-margin-top:20px;margin:42px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;flex-wrap:wrap;margin-bottom:17px}h2{font-size:27px;letter-spacing:-.7px;margin:0}h3{margin:0 0 8px;font-size:18px}p{margin:8px 0}.muted{color:var(--muted)}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card p,.card li{color:#c7d2eb}.card ul{padding-left:20px}.label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--accent2);font-weight:800}.callout{border-left:3px solid var(--yellow);padding:11px 14px;background:#2a261d;border-radius:0 10px 10px 0;color:#f5e6bf;margin:15px 0}.code{white-space:pre-wrap;background:#080d18;border:1px solid #26314b;padding:15px;border-radius:12px;overflow:auto;color:#d5e1ff;font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tabs button{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 12px;color:var(--muted)}.tabs button.active{color:var(--text);border-color:var(--accent);background:#222d50}.qa{border:1px solid var(--line);border-radius:13px;margin:10px 0;overflow:hidden;background:#11192b}.qa summary{padding:14px 16px;cursor:pointer;font-weight:750}.qa .answer{padding:0 16px 15px;color:#c7d2eb}.answer strong{color:var(--text)}.flash-wrap{max-width:650px;margin:auto}.flash{min-height:220px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(140deg,#202d50,#11192b);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:28px;cursor:pointer}.flash .face{color:var(--accent2);font-size:11px;font-weight:900;letter-spacing:2px}.flash h3{font-size:23px;margin:14px 0}.flash p{color:var(--muted)}.flash-controls{display:flex;justify-content:center;gap:9px;margin-top:12px}.progress{height:7px;border-radius:9px;background:#26314b;overflow:hidden;margin:12px 0}.progress span{display:block;height:100%;background:var(--accent2);width:0;transition:width .2s}.quiz-q{padding:17px;border:1px solid var(--line);border-radius:14px;margin:12px 0;background:var(--panel)}.quiz-q label{display:block;padding:7px 10px;border-radius:8px;color:#c7d2eb;cursor:pointer}.quiz-q label:hover{background:var(--panel2)}.result{font-weight:800;margin-top:12px}.search{width:100%;max-width:360px;background:#0c1425;border:1px solid var(--line);padding:10px 12px;border-radius:10px;color:var(--text)}.footer{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:12px}.checklist label{display:flex;gap:10px;align-items:flex-start;padding:8px 0;color:#c7d2eb}.checklist input{margin-top:6px;accent-color:var(--accent2)}.small{font-size:12px;color:var(--muted)}@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:15px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap}.side-note{display:none}main{padding-top:20px}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:580px){.grid2,.grid3{grid-template-columns:1fr}.hero{padding-top:25px}.stat{padding:13px}h2{font-size:23px}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand">EXAM<span> BUDDY</span></div><div class="tag">OOPS · UNIT IV · JAVA</div>
+  <nav class="nav" id="nav">
+    <button class="active" data-target="home">✦ Overview</button><button data-target="roadmap">Study roadmap</button><button data-target="polymorphism">Polymorphism</button><button data-target="compare">Overloading vs overriding</button><button data-target="abstraction">Abstraction</button><button data-target="abstractclass">Abstract class</button><button data-target="abstractmethod">Abstract method</button><button data-target="interface">Interface</button><button data-target="exam">Exam answers</button><button data-target="flashcards">Flashcards</button><button data-target="quiz">Practice quiz</button>
+  </nav>
+  <div class="side-note"><b>Source rule</b><br>This site is based on your 22-page Unit-IV PDF. Any extra clarification is marked as an addition; source wording is not silently replaced.</div>
+</aside>
+<main>
+<div class="topline"><span>J D College of Engineering & Management · CSE</span><span class="pill">SESSION 2026–27 · 3rd SEM</span></div>
+<div id="home" class="hero">
+  <div class="eyebrow">Your personal revision workspace</div><h1>OOPS Unit IV.<br><em>Understand it. Recall it.</em></h1>
+  <p class="lead">Polymorphism, abstraction, abstract classes, abstract methods and interfaces — organised into bite-sized explanations, exam-ready answers, recall cards and a quick self-test.</p>
+  <div class="actions"><button class="btn primary" onclick="go('roadmap')">Start studying →</button><button class="btn" onclick="go('quiz')">Test myself</button><button class="btn" onclick="window.print()">Print / Save PDF</button></div>
+</div>
+<div class="stats"><div class="stat"><strong>5</strong><small>Core topic groups</small></div><div class="stat"><strong>2</strong><small>Polymorphism types</small></div><div class="stat"><strong>12</strong><small>Recall cards</small></div><div class="stat"><strong>10</strong><small>Quiz questions</small></div></div>
+
+<section id="roadmap"><div class="section-head"><div><div class="eyebrow">Plan your session</div><h2>Study roadmap</h2></div><span class="pill">Tick as you go</span></div>
+<div class="card checklist" id="tasks">
+<label><input type="checkbox"> <span><b>1. Polymorphism</b><br><span class="muted">Learn compile-time and runtime, then trace the Bike/Splendor example.</span></span></label>
+<label><input type="checkbox"> <span><b>2. Overloading vs overriding</b><br><span class="muted">Memorise differences: parameters, inheritance, binding time.</span></span></label>
+<label><input type="checkbox"> <span><b>3. Abstraction</b><br><span class="muted">Know what it hides and the TV remote example.</span></span></label>
+<label><input type="checkbox"> <span><b>4. Abstract class and abstract method</b><br><span class="muted">Understand rules, syntax and implementation by child classes.</span></span></label>
+<label><input type="checkbox"> <span><b>5. Interface</b><br><span class="muted">Recall abstract methods, public implementation and multiple interfaces.</span></span></label>
+<label><input type="checkbox"> <span><b>6. Active recall</b><br><span class="muted">Do the flashcards and quiz without looking at notes.</span></span></label>
+<div class="progress"><span id="taskProgress"></span></div><div class="small" id="taskCount">0 of 6 completed</div></div></section>
+
+<section id="polymorphism"><div class="section-head"><div><div class="eyebrow">Topic 01</div><h2>Polymorphism in Java</h2></div><span class="pill">High-yield concept</span></div>
+<div class="grid2"><div class="card"><div class="label">Simple meaning</div><h3>One name, many forms</h3><p>Polymorphism is the ability of an object or method to take different forms. The same method name can perform different tasks based on parameters or the actual object.</p><div class="callout">Memory hook: <b>Poly = many</b>, <b>morphs = forms</b>.</div></div><div class="card"><div class="label">Two types · source PDF</div><h3>Compile-time vs runtime</h3><ul><li><b>Compile-time:</b> method overloading; compiler selects a method using parameter number, types and order.</li><li><b>Runtime:</b> method overriding; the actual object determines the implementation at runtime.</li></ul></div></div>
+<div class="grid2" style="margin-top:14px"><div class="card"><h3>Compile-time example</h3><div class="code">class Calculation {
+  int add(int a, int b) {
+    return a + b;
+  }
+  double add(double a, double b) {
+    return a + b;
+  }
+}
+// add(5, 3)       → 8
+// add(2.5, 3.7)   → 6.2</div><p class="small">The parameter types determine which overloaded method is selected.</p></div><div class="card"><h3>Runtime example · Bike/Splendor</h3><div class="code">class Bike {
+  void run() {
+    System.out.println("running");
+  }
+}
+class Splendor extends Bike {
+  void run() {
+    System.out.println("running safely with 60km");
+  }
+}
+Bike b = new Splendor(); // upcasting
+b.run();</div><p class="small">Output: <code>running safely with 60km</code>. The overridden subclass method runs.</p></div></div>
+<div class="card" style="margin-top:14px"><h3>Upcasting</h3><p>When a parent-class reference variable refers to a child-class object, it is called upcasting.</p><div class="code">Bike b = new Splendor();</div><p class="muted">The reference type controls which members are accessible; for an overridden instance method, the actual object determines the implementation.</p></div>
+<div class="card" style="margin-top:14px"><h3>Advantages listed in the PDF</h3><div class="grid3"><div><b>Code reusability</b><p class="muted">Reuse and consistent interfaces.</p></div><div><b>Flexibility</b><p class="muted">Extend behaviour without changing existing code.</p></div><div><b>Dynamic invocation</b><p class="muted">Method selected by actual object at runtime.</p></div><div><b>Interface implementation</b><p class="muted">Different classes treated through a common interface.</p></div><div><b>Method overloading</b><p class="muted">Same name, different parameter lists.</p></div><div><b>Lower complexity</b><p class="muted">Modular, maintainable class structure.</p></div></div></div>
+</section>
+
+<section id="compare"><div class="section-head"><div><div class="eyebrow">Topic 02</div><h2>Overloading vs overriding</h2></div></div>
+<div class="card" style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;min-width:560px"><thead><tr><th style="text-align:left;padding:10px;border-bottom:1px solid var(--line)">Feature</th><th style="text-align:left;padding:10px;border-bottom:1px solid var(--line)">Overloading</th><th style="text-align:left;padding:10px;border-bottom:1px solid var(--line)">Overriding</th></tr></thead><tbody id="compareRows"></tbody></table><p class="small">Condensed from the comparison tables on pages 9–10 of the source PDF. Some detailed Java rules are simplified for quick revision.</p></div>
+</section>
+
+<section id="abstraction"><div class="section-head"><div><div class="eyebrow">Topic 03</div><h2>Abstraction in Java</h2></div></div>
+<div class="grid2"><div class="card"><h3>Definition</h3><p>Abstraction is the process of hiding internal implementation details and showing only essential functionality. It focuses on <b>what</b> an object does rather than <b>how</b> it does it.</p><div class="callout">Real-life example from the PDF: a TV remote. You press buttons without needing to understand the TV's internal technology.</div></div><div class="card"><h3>Ways to achieve abstraction</h3><ul><li><b>Abstract class:</b> the PDF describes it as providing 0% to 100% abstraction.</li><li><b>Interface:</b> the PDF describes it as providing 100% abstraction.</li></ul><p class="small">Clarification / addition: modern Java interfaces can also contain default, static and private methods, so “100% abstraction” is a common introductory simplification rather than a complete description of every interface feature.</p></div></div>
+</section>
+
+<section id="abstractclass"><div class="section-head"><div><div class="eyebrow">Topic 04</div><h2>Abstract class</h2></div></div>
+<div class="card"><p>An abstract class is declared with the <code>abstract</code> keyword and cannot be instantiated directly. It can provide a common base for related classes, with abstract methods and implemented methods.</p><div class="code">abstract class Shape {
+    abstract void draw();       // no body
+    void info() {               // concrete method
+        System.out.println("A shape");
+    }
+}
+class Circle extends Shape {
+    void draw() {
+        System.out.println("Drawing circle");
+    }
+}
+class Main {
+    public static void main(String[] args) {
+        Shape s = new Circle();
+        s.draw();
+        s.info();
+    }
+}</div><h3 style="margin-top:18px">Rules to remember from the PDF</h3><ul><li>Must be declared using <code>abstract</code>.</li><li>Can contain abstract and non-abstract methods.</li><li>Cannot be instantiated directly.</li><li>Can have constructors and static methods.</li><li>Can have final methods; subclasses cannot override those final methods.</li><li>An abstract class may have no abstract methods and still cannot be instantiated.</li><li>If a class contains an abstract method, the class must itself be abstract.</li></ul><div class="callout">Exam trap: You can create a reference of an abstract class type, such as <code>Shape s = new Circle();</code>, but not an object with <code>new Shape()</code>.</div></div>
+</section>
+
+<section id="abstractmethod"><div class="section-head"><div><div class="eyebrow">Topic 05</div><h2>Abstract method</h2></div></div>
+<div class="grid2"><div class="card"><h3>Definition & syntax</h3><p>An abstract method is declared without a body using the <code>abstract</code> keyword. It specifies what a method should do and leaves implementation to a subclass.</p><div class="code">abstract returnType methodName(parameterList);</div><p>Example: <code>abstract void printInfo();</code></p></div><div class="card"><h3>PDF example pattern</h3><div class="code">abstract class ArithmeticOperation {
+    abstract void printInfo();
+}
+class Add extends ArithmeticOperation {
+    void printInfo() {
+        int a = 3, b = 4;
+        System.out.println(a + b);
+    }
+}
+class Sub extends ArithmeticOperation {
+    void printInfo() {
+        int a = 4, b = 5;
+        System.out.println(a - b);
+    }
+}</div><p class="small">The PDF explains that Add and Sub implement the method differently; a superclass reference can call the appropriate implementation at runtime.</p></div></div>
+</section>
+
+<section id="interface"><div class="section-head"><div><div class="eyebrow">Topic 06</div><h2>Interface</h2></div></div>
+<div class="grid2"><div class="card"><h3>Core idea</h3><p>The PDF describes interface methods as abstract by default unless declared <code>default</code>, <code>static</code> or <code>private</code>.</p><div class="callout"><b>Easy memory hook from PDF:</b><br>Interface → WHAT<br>Implementation class → HOW</div><ul><li>An abstract interface method has no body.</li><li>A class implementing the interface must implement its abstract methods.</li><li>The implemented method must be declared <code>public</code>.</li><li>An interface can contain multiple abstract methods.</li><li>A class can implement multiple interfaces.</li></ul></div><div class="card"><h3>Example: Animal and Dog</h3><div class="code">interface Animal {
+    void sound();
+}
+class Dog implements Animal {
+    public void sound() {
+        System.out.println("Dog barks");
+    }
+}
+class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        dog.sound();
+    }
+}</div><h3 style="margin-top:15px">Why use an interface?</h3><ul><li>Achieve abstraction.</li><li>Support multiple inheritance of type through multiple interfaces.</li><li>Reduce coupling and improve flexibility and maintainability.</li></ul></div></div>
+</section>
+
+<section id="exam"><div class="section-head"><div><div class="eyebrow">Write-ready answers</div><h2>Exam answers · 2 and 4 marks</h2></div><input id="answerSearch" class="search" placeholder="Search answers…"></div>
+<div class="tabs" id="answerTabs"><button class="active" data-filter="all">All</button><button data-filter="2">2 marks</button><button data-filter="4">4 marks</button></div>
+<div id="answers"></div>
+</section>
+
+<section id="flashcards"><div class="section-head"><div><div class="eyebrow">Active recall</div><h2>Flashcards</h2></div><span class="pill" id="flashIndex">1 / 12</span></div>
+<div class="flash-wrap"><div class="flash" id="flashCard" role="button" tabindex="0" aria-label="Flip flashcard"><div class="face" id="flashFace">QUESTION</div><h3 id="flashTitle">What is polymorphism?</h3><p id="flashHint">Click the card to reveal the answer.</p></div><div class="flash-controls"><button class="btn" id="prevFlash">← Previous</button><button class="btn primary" id="flipFlash">Reveal answer</button><button class="btn" id="nextFlash">Next →</button></div><div class="progress"><span id="flashProgress"></span></div></div>
+</section>
+
+<section id="quiz"><div class="section-head"><div><div class="eyebrow">Check your understanding</div><h2>Practice quiz</h2></div><span class="pill">10 questions</span></div><p class="muted">Choose one answer per question, then submit. Questions are based on the uploaded Unit-IV notes.</p><div id="quizForm"></div><button class="btn primary" id="submitQuiz">Check my score</button> <button class="btn" id="resetQuiz">Try again</button><div id="quizResult" class="result"></div></section>
+<div class="footer">Built from the uploaded “UNIT-IV Notes” PDF (22 pages). Source-derived material follows the PDF’s topics and examples. Any external clarification is explicitly labelled “Clarification / addition.” Use your lecturer’s preferred wording if it differs.</div>
+</main></div>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});$$('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.target===id))}
+$$('.nav button').forEach(b=>b.addEventListener('click',()=>go(b.dataset.target)));
+const rows=[
+['Purpose','Improves readability; same method name with different parameters.','Provides a specific implementation of an inherited method.'],
+['Class relationship','Usually within the same class; inheritance is not required.','Requires a superclass–subclass relationship.'],
+['Parameters','Must differ in number, type or order.','Must match the overridden method’s signature.'],
+['Polymorphism type','Compile-time (static binding).','Runtime (dynamic binding).'],
+['Method selection','Compiler selects using arguments.','Actual object determines the overridden instance method.'],
+['Return type','Cannot overload by return type alone.','Return type must be compatible; same or covariant is typical.'],
+['Static methods','Can be overloaded.','Static methods are hidden, not overridden.'],
+['Private/final','Can overload methods with these modifiers.','Private methods are not overridden; final methods cannot be overridden.']
+];
+$('#compareRows').innerHTML=rows.map(r=>'<tr>'+r.map((x,i)=>`<td style="padding:10px;border-bottom:1px solid var(--line);color:${i===0?'var(--text)':'#c7d2eb'}">${x}</td>`).join('')+'</tr>').join('');
+const answers=[
+{m:2,q:'Define polymorphism.',a:'Polymorphism means “many forms.” In Java, the same method name can perform different tasks depending on the parameters passed or the actual object that invokes it.'},
+{m:2,q:'Name the two types of polymorphism in Java.',a:'1. Compile-time polymorphism, achieved through method overloading. 2. Runtime polymorphism, commonly achieved through method overriding and dynamic method dispatch.'},
+{m:2,q:'What is upcasting?',a:'Upcasting occurs when a superclass reference variable refers to a subclass object. Example: Bike b = new Splendor();'},
+{m:2,q:'Define abstraction.',a:'Abstraction hides internal implementation details and exposes essential functionality. It focuses on what an object does rather than how it does it.'},
+{m:2,q:'What is an abstract method?',a:'An abstract method is declared without a body using the abstract keyword. Its implementation is provided by a concrete subclass. Example: abstract void printInfo();'},
+{m:2,q:'State any two rules of an abstract class.',a:'An abstract class cannot be instantiated directly. It can contain both abstract and concrete methods. (Other valid PDF points include constructors, static methods and final methods.)'},
+{m:2,q:'Give two uses of an interface.',a:'An interface helps achieve abstraction and allows a class to implement multiple interfaces. The PDF also mentions loose coupling and maintainability.'},
+{m:4,q:'Explain compile-time polymorphism with an example.',a:'Compile-time polymorphism is achieved through method overloading. A class has methods with the same name but different parameter lists. The compiler selects the appropriate method from the arguments. Example: class Calc { int add(int a,int b){return a+b;} double add(double a,double b){return a+b;} }. Calls add(5,3) and add(2.5,3.7) select different methods.'},
+{m:4,q:'Explain runtime polymorphism with an example.',a:'Runtime polymorphism, also called dynamic method dispatch, resolves an overridden method at runtime. A parent reference points to a child object, and the child implementation is executed. Example: class Bike { void run(){System.out.println("running");} } class Splendor extends Bike { void run(){System.out.println("running safely with 60km");} } Bike b=new Splendor(); b.run(); Output: running safely with 60km.'},
+{m:4,q:'Differentiate method overloading and method overriding.',a:'Overloading uses the same method name with different parameter lists and is resolved at compile time; inheritance is not required. Overriding provides a subclass implementation with a compatible signature and requires inheritance; the implementation for an overridden instance method is selected at runtime.'},
+{m:4,q:'Explain abstraction and its ways in Java.',a:'Abstraction hides implementation details and shows essential functionality. The PDF gives two ways: abstract classes and interfaces. A TV remote is a real-life example because the user presses buttons without understanding the internal circuitry. Abstract classes can include implemented and abstract methods; interfaces define a contract for implementing classes.'},
+{m:4,q:'Write the rules / properties of an abstract class.',a:'An abstract class is declared with abstract and cannot be instantiated directly. It can contain abstract and non-abstract methods, constructors, static methods and final methods. An abstract class may contain no abstract methods. If a class declares an abstract method, the class must be abstract. A concrete subclass must implement inherited abstract methods before it can be instantiated.'},
+{m:4,q:'Explain abstract methods in an interface.',a:'In Java, interface methods are abstract by default unless declared default, static or private. An abstract interface method has no body. A class implementing the interface must provide a public implementation of its abstract methods. Interfaces can contain multiple abstract methods, and a class can implement multiple interfaces.'},
+{m:4,q:'List advantages of polymorphism.',a:'The PDF lists code reusability, flexibility and extensibility, dynamic method invocation, interface implementation, method overloading and reduced code complexity. These support modular code and allow different classes to be used through common interfaces.'}
+];
+let answerFilter='all';
+function renderAnswers(){const term=$('#answerSearch').value.toLowerCase();$('#answers').innerHTML=answers.filter(x=>(answerFilter==='all'||String(x.m)===answerFilter)&&(x.q+' '+x.a).toLowerCase().includes(term)).map(x=>`<details class="qa"><summary><span class="pill">${x.m} marks</span> &nbsp;${x.q}</summary><div class="answer">${x.a}</div></details>`).join('')||'<p class="muted">No answers match that search.</p>'}
+$$('#answerTabs button').forEach(b=>b.addEventListener('click',()=>{answerFilter=b.dataset.filter;$$('#answerTabs button').forEach(x=>x.classList.toggle('active',x===b));renderAnswers()}));$('#answerSearch').addEventListener('input',renderAnswers);renderAnswers();
+const cards=[
+['What does polymorphism mean?','Many forms: the same method name can behave differently based on parameters or the actual object.'],
+['Which method feature achieves compile-time polymorphism?','Method overloading.'],
+['Which method feature commonly achieves runtime polymorphism?','Method overriding with dynamic method dispatch.'],
+['What is upcasting?','A parent-class reference refers to a child-class object.'],
+['What is the key idea of abstraction?','Show WHAT an object does; hide HOW it does it.'],
+['Give the PDF’s real-life abstraction example.','A television remote control.'],
+['Can an abstract class be instantiated directly?','No. Create a concrete subclass object instead.'],
+['Can an abstract class contain concrete methods?','Yes. It can contain both abstract and non-abstract methods.'],
+['Can an abstract class have no abstract methods?','Yes, according to the PDF; it still cannot be instantiated directly.'],
+['Write the abstract method syntax.','abstract returnType methodName(parameterList);'],
+['What must a class do when implementing an interface abstract method?','Provide the implementation; the method must be public.'],
+['What is the PDF’s interface memory hook?','Interface → WHAT; implementation class → HOW.']
+];let ci=0,flipped=false;
+function showCard(){let c=cards[ci];$('#flashTitle').textContent=flipped?c[1]:c[0];$('#flashFace').textContent=flipped?'ANSWER':'QUESTION';$('#flashHint').textContent=flipped?'Think of the next card when ready.':'Click the card to reveal the answer.';$('#flashIndex').textContent=(ci+1)+' / '+cards.length;$('#flashProgress').style.width=((ci+1)/cards.length*100)+'%';$('#flipFlash').textContent=flipped?'Show question':'Reveal answer'}
+function flip(){flipped=!flipped;showCard()}$('#flashCard').addEventListener('click',flip);$('#flashCard').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip()}});$('#flipFlash').addEventListener('click',flip);$('#nextFlash').addEventListener('click',()=>{ci=(ci+1)%cards.length;flipped=false;showCard()});$('#prevFlash').addEventListener('click',()=>{ci=(ci-1+cards.length)%cards.length;flipped=false;showCard()});showCard();
+const questions=[
+['Polymorphism literally means…',['One class','Many forms','Data hiding','Code compilation'],1],
+['Method overloading is usually…',['Runtime polymorphism','Compile-time polymorphism','Encapsulation','Inheritance only'],1],
+['In method overloading, methods must differ in…',['Only return type','Parameter list','Class name','Access modifier only'],1],
+['Runtime polymorphism is associated with…',['Overloading','Overriding','Constructors only','Packages'],1],
+['Bike b = new Splendor(); is an example of…',['Downcasting','Upcasting','Abstraction only','Overloading'],1],
+['Abstraction focuses on…',['How only','What rather than how','Variable names','Compilation speed'],1],
+['Which is true about abstract classes?',['They can always be instantiated','They cannot have concrete methods','They cannot be instantiated directly','They cannot have constructors'],2],
+['An abstract method is declared…',['With a full body','Without a body','Only in Main','As final always'],1],
+['A class implementing an interface’s abstract method must make it…',['private','public','protected only','static always'],1],
+['Which benefit of interfaces is mentioned in the PDF?',['Multiple inheritance support','No methods allowed','Objects need no classes','Guaranteed faster execution'],0]
+];
+function renderQuiz(){$('#quizForm').innerHTML=questions.map((q,i)=>`<div class="quiz-q"><b>${i+1}. ${q[0]}</b>${q[1].map((o,j)=>`<label><input type="radio" name="q${i}" value="${j}"> ${String.fromCharCode(65+j)}. ${o}</label>`).join('')}<div class="small" id="feedback${i}"></div></div>`).join('');$('#quizResult').textContent=''}
+$('#submitQuiz').addEventListener('click',()=>{let score=0;questions.forEach((q,i)=>{let selected=$(`input[name="q${i}"]:checked`),f=$(`#feedback${i}`);if(selected&&Number(selected.value)===q[2]){score++;f.textContent='Correct ✓';f.style.color='var(--accent2)'}else{f.textContent='Correct answer: '+String.fromCharCode(65+q[2])+'. '+q[1][q[2]];f.style.color='var(--yellow)'}});$('#quizResult').textContent=`Your score: ${score} / ${questions.length} (${Math.round(score/questions.length*100)}%). ${score>=8?'Great work — revise the answers you missed.':score>=5?'Good start — review the topic cards and try again.':'Revisit the notes first, then retake the quiz.'}`});
+$('#resetQuiz').addEventListener('click',renderQuiz);renderQuiz();
+const checks=$$('#tasks input');function updateTasks(){let n=checks.filter(x=>x.checked).length;$('#taskCount').textContent=`${n} of ${checks.length} completed`;$('#taskProgress').style.width=(n/checks.length*100)+'%'}checks.forEach(x=>x.addEventListener('change',updateTasks));updateTasks();
+</script>
+</body></html>
